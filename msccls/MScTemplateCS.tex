@@ -12,6 +12,7 @@
 \usepackage[titletoc, header, page]{appendix}
 \usepackage{transparent}
 \usepackage{natbib}
+\usepackage{wrapfig}
 
 % used to display the used files at the end. Select nofilelist as a package option to disable this
 \listfiles % initialize
@@ -81,6 +82,15 @@ Leave a \textit{2cm} vertical space after the abstract and provide a few keyword
 \section{Background}
 Natural language processing (NLP) is a field of study mainly in computer science that deals with analyzing human language in a way that computers can understand and process. According to \citet{ntlk2009}, natural language is used for everyday communication by humans, in contrast to artificial languages such as programming languages and mathematical notations. Since natural languages continuously develop as time goes on and its adherence to structures diminish, it is difficult to define explicit rules to follow. 
 
+\subsection{Emotion Recognition}
+Emotion has always been a key part of human language, and it therefore comes naturally that teaching a computer to understand emotion in human language is a big part of NLP. Initially, the focus lied in sentiment analysis, a field of study focused on determining the binary polarization of piece of text as either positive or negative. Godtycklig bit om sentiment analysis. 
+Emotion recognition is an extension of sentiment analysis that instead of just determining the polarization of text, attributes emotion to it. This process is more challenging than sentiment analysis, as the differences between emotions are subtler than that of just positive and negative. 
+Emotion recognition has also been extended to work on different modalities, such as for example visual and auditory input.
+
+
+Emotion recognition can be applied to data in various modalities, 
+such as visual, in the form of facial expressions and body language, audible and text based in the form of dialogues. To o
+
 
 The LSTM architecture \citep{ntlk2009} is something....
 
@@ -96,14 +106,13 @@ The LSTM architecture \citep{ntlk2009} is something....
 \subsection{Telavox}
 Telavox is a telecommunication company that specializes in business-to-business and business-to-customer unified communication as a service. 
 \section{Research questions}
-The primary aim of this thesis is to investigate whether or not voice call analysis using NLP can be effective enough to be used as a replacement for manual analysis. 
-\textit{What level of precision can be reached with the categorization of keywords from voice calls? }
-
-\textit{How well will our algorithm perform compared to other algorithms carrying out the same measurements?}
-
+The primary aim of this thesis is to investigate whether or not voice call analysis using NLP can be effective enough to be used as a replacement for manual analysis. \\
+\textit{What level of precision can be reached with the categorization of keywords from voice calls?}\\
+\textit{How well will our algorithm perform compared to other algorithms carrying out the same measurements?}\\
 \textit{What level of effectiveness can be reached compared to a human manually analyzing the data?} 
+
 \section{Terminology}
-NLP, ML, Speech-to-text och (STT), API. Kan också kallas för Glossary and Abbreviations
+NLP, ML, Speech-to-text och (STT), API. Modality. Kan också kallas för Glossary and Abbreviations
 \section{Delimitations}
 Delimitations are choices made by the researcher which should be mentioned. They describe the boundaries that you have set for the study.
 \section{Contributions}
@@ -111,17 +120,110 @@ Potentialen av applications
 \section{Related work}
 
 
+
+
+
+\chapter{Theory}
+\section{Machine Learning}
+Machine learning is a field of study in artificial intelligence that aims to train a system to solve a problem, rather than to explicitly program it. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
+In \textbf{supervised learning}, which is one of the two main types of tasks in machine learning, the dataset is the collection of labeled examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^N.$ Each element $\mathbf{x}_i$ is a feature vector that contains a value describing the example somehow and $y_i$ is a label, which is either a finite set of classes or a real number. The purpose of supervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs information that allows deducing the label y for this feature vector.) 
+The other main type of tasks in machine learning is \textbf{unsupervised learning}. The dataset for unsupervised learning is $\{ (\mathbf{x}_i)\}_{i=1}^N$ where $\mathbf{x}_i$ is a feature vector. The goal of unsupervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs either another vector or a value. 
+
+(Källor Andriy Burkov, Chollet)
+
+
+
+
+\subsection{Neural Networks and Deep Learning}
+
+Neural networks are machine learning systems loosely inspired by biological neural networks (Chollet s.8). A neural network is a collection of connected nodes or neurons that 
+
+\begin{quote}
+An ANN is based on a collection of connected units or nodes called artificial neurons, which loosely model the neurons in a biological brain. Each connection, like the synapses in a biological brain, can transmit a signal to other neurons. An artificial neuron that receives a signal then processes it and can signal neurons connected to it.
+\end{quote}
+
+ 
+Deep learning = multiple layers of neural networks
+
+
+
+
+
+
+
+
+
+
+\section{Word Vectors}
+Word vectors are a type of word representation where texts are turned into numbers
+\subsection{One-Hot Encoding}
+The most basic way of creating a word vector is the one-hot encoding method. This creates a very big and sparse $n \cdot n$ matrix where $n$ is the number of words in the embedding. Each word is then represented by an array filled with zeroes except for one index set to one. For example, the one-hot encoding of the phrase \textit{Why was six afraid of seven} would start with the assignment of values to word:
+
+\begin{center}
+    \begin{tabular}{c|c|c|c|c|c}
+    
+         Why & was & six & afraid & of & seven \\
+         \hline
+         1 & 2 & 3 & 4 & 5 & 6 \\
+    \end{tabular}
+\end{center}
+
+This would then be converted into the following matrix:
+
+\begin{center}
+    \begin{tabular}{lllllll}
+                            & 1 & 2 & 3 & 4 & 5 & 6 \\ \cline{2-7} 
+\multicolumn{1}{l|}{Why}    & 1 & 0 & 0 & 0 & 0 & 0 \\
+\multicolumn{1}{l|}{was}    & 0 & 1 & 0 & 0 & 0 & 0 \\
+\multicolumn{1}{l|}{six}    & 0 & 0 & 1 & 0 & 0 & 0 \\
+\multicolumn{1}{l|}{afraid} & 0 & 0 & 0 & 1 & 0 & 0 \\
+\multicolumn{1}{l|}{of}     & 0 & 0 & 0 & 0 & 1 & 0 \\
+\multicolumn{1}{l|}{seven}  & 0 & 0 & 0 & 0 & 0 & 1
+    \end{tabular}
+\end{center}
+
+As mentioned, this method is very basic and creates an unnecessarily large matrix that is largely filled up with nothing. If we wanted to represent a vocabulary of 20 000 words, each word would be represented by 19 999 zeroes and a single one. 
+
+The other big issue with it is that no meaning can be extracted from the matrix. If our vocabulary contained the words "cat", "dog" and "hamster", we could easily see that these are all domestic animals but in the space of the one hot vector, "cat" is as close to "dog" as it would be to "airplane". 
+
+\subsection{Word Embedding}
+To resolve the two aforementioned problems with one-hot encodings, word embeddings were created, also known as dense word vectors. \citep{neuralnetworkmethods} 
+Here, instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional or 1024-dimensional are common when dealing with very large vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, direction could also be a useful tool to extract meaning from the embedding.\newpage
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+\includegraphics[width=0.9\linewidth]{msccls/embedding_direction.png} 
+\caption{Small example of a word embedding space}
+\label{fig:direction}
+\end{wrapfigure}
+
+
+In figure \ref{fig:direction}, the four words \textit{cat}, \textit{dog}, \textit{wolf} and \textit{tiger} are represented on a geometric plane. We can clearly see some of the possible geometric transformations possible by using direction as a tool. For instance, the same vector that takes us from \textit{dog} to \textit{wolf} also takes us from \textit{cat} to \textit{tiger}. This could be interpreted this vector as "converting a domesticated animal to its wildlife equivalent". Another vector will take us both from \textit{cat} to \textit{dog} and from \textit{tiger} to \textit{wolf} which could be interpreted as "converting a feline to a canine". Two meaningful transformation vectors that are common in the real world are "gender" and "plural" vectors. By applying a "female" vector to \textit{king}, \textit{queen} is obtained and the same vector returns \textit{actress} if instead used on \textit{actor}. "Plural", as should seem obvious by now, if used on \textit{actor} will return \textit{actors}. Typically there are thousands of these types of interpretable direction vectors in a large word embedding.
+
+
+This bit is after the picture, that should be to the right of the last paragraph
+
+\subsection{RoBERTa}
+
+\section{Evaluation}
+\subsection{F1-score, precision, accuracy}
 \chapter{Approach}
 
+\section{Baseline - COSMIC}
 \begin{itemize}
     \item Dataset till input måste följa Googles standard som de följer vid speech to text. 
 \end{itemize}
 
 \section{Theory}
 NLP technique, categorization, ML, supervised/unsupervised,  
-\section{Method} Ta eventuellt bort
+Mechanical turks to 
+Finns både text och audio på MELD, \citep{zhang2019modeling} visar att text för sig är bättre än ljud men att text+ljud > text
+train, dev(validation), test, man testar på dev under development, först på test efter man är klar
+\section{Datasets}
+\subsection{Approach} 
+\section{Method}
+Google Colab
 Word level one hot encoding, kanske relevant, avgör beroende på hur mycket mer vi behöver skriva.
-\section{Implementation} Ta eventuellt bort
+\section{Implementation}
 Overfitting \\
 Data Augmentation \\
 importance of finding the correct data-sets \\
