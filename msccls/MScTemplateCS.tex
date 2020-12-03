@@ -13,6 +13,8 @@
 \usepackage{transparent}
 \usepackage{natbib}
 \usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{amsmath}
 
 % used to display the used files at the end. Select nofilelist as a package option to disable this
 \listfiles % initialize
@@ -125,26 +127,80 @@ Potentialen av applications
 
 \chapter{Theory}
 \section{Machine Learning}
-Machine learning is a field of study in artificial intelligence that aims to train a system to solve a problem, rather than to explicitly program it. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
-In \textbf{supervised learning}, which is one of the two main types of tasks in machine learning, the dataset is the collection of labeled examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^N.$ Each element $\mathbf{x}_i$ is a feature vector that contains a value describing the example somehow and $y_i$ is a label, which is either a finite set of classes or a real number. The purpose of supervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs information that allows deducing the label y for this feature vector.) 
+Machine learning \citep{franoischollet2017learning} is a field of study in artificial intelligence that aims to train a system to solve a problem, rather than to explicitly program it. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
+In \textbf{supervised learning} \citep{100pageBurkov}, which is one of the two main types of tasks in machine learning, the dataset is the collection of labeled examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^N.$ Each element $\mathbf{x}_i$ is a feature vector that contains a value describing the example somehow and $y_i$ is a label, which is either a finite set of classes or a real number. The purpose of supervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs information that allows deducing the label y for this feature vector.) 
 The other main type of tasks in machine learning is \textbf{unsupervised learning}. The dataset for unsupervised learning is $\{ (\mathbf{x}_i)\}_{i=1}^N$ where $\mathbf{x}_i$ is a feature vector. The goal of unsupervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs either another vector or a value. 
-
-(Källor Andriy Burkov, Chollet)
-
 
 
 
 \subsection{Neural Networks and Deep Learning}
 
-Neural networks are machine learning systems loosely inspired by biological neural networks (Chollet s.8). A neural network is a collection of connected nodes or neurons that 
+Neural networks are machine learning systems loosely inspired by biological neural networks. A neural network is a collection of connected nodes or neurons that was first mentioned in \citet{mcculloch1943}. A neuron \citep{dawson1998ann} is an information-processing unit that receives inputs and produces a single output that can be sent to multiple other neurons. To find the output of a neuron the weighted sum of all inputs is weighted by the weights all connecting to the neuron. This weighted sum is then passed through an activation function to provide the output.
 
 \begin{quote}
-An ANN is based on a collection of connected units or nodes called artificial neurons, which loosely model the neurons in a biological brain. Each connection, like the synapses in a biological brain, can transmit a signal to other neurons. An artificial neuron that receives a signal then processes it and can signal neurons connected to it.
+RNN gate    
 \end{quote}
 
- 
-Deep learning = multiple layers of neural networks
 
+
+\begin{quote}
+    The learning of the error is the cost function of the network and feeding back is called backpropagation.
+
+\end{quote}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=12cm]{msccls/explanatory_images/single_neuron.png}
+    \caption{An example of a single neuron}
+    \label{fig:neuron}
+\end{figure}
+
+
+\begin{equation}
+    g(x_1, x_2, x_3,...,x_n) = g(x) = \sum_{i=1}^n  xi
+\end{equation}
+
+Here, $g(x)$ takes the inputs $x_1, x_2, x_3,...,x_n$, while the activation function $f(x)$ defines the output. An example of a well known activation function is ReLU, Rectified linear unit, which has the following function. 
+
+\begin{equation}
+y = f(g(x)) =
+\begin{cases}
+  0, & \text{if}\ x \leq 0 \\
+  x, & \text{if}\ x > 0
+\end{cases}
+\end{equation}
+
+
+
+
+
+\begin{itemize}
+    \item Neurons
+    \item Weights and connections 
+    \item Backpropagation function
+    \item gradient
+    \item Deep learning = multiple layers of neural networks
+\end{itemize}
+
+
+
+\subsection{Gated Recurrent Unit - GRU}
+A gated recurrent unit (GRU) is neural network architecture introduced in 2014 by \citet{cho2014learning} and is considered an improvement to the traditional recurrent neural network. Although fairly new it is already a well-established variant of recurrent neural networks. A GRU is quite useful for solving the vanishing gradient problem \citep{hochreiter1998} that might occur in recurrent neural networks. The vanishing gradient problem occurs in machine learning when the gradient progressively decreases, which prevents the adjustments of the weight's values. It has also been shown that GRUs have had better performance on smaller and less frequent datasets \citep{Gruber2020AreGC}.
+GRUs is primarily constructed of an update gate, a reset gate and a current memory gate. The update gate regulates the amount of information that is passed along to the next state, while the reset gate on the other hand decides the amount of past information that is going to being disregarded henceforth. 
+
+\begin{quote}
+Snacka mer om current memory gate eller ta bort helt
+\end{quote}
+
+
+
+\subsection{Long Short-Term Memory - LSTM}
+
+\begin{quote}
+    Ta bara med ifall vi bestämmer oss att ändra från GRU till LSTM i modellen
+    In comparison to GRUs, LSTMs are   
+
+\end{quote}
 
 
 
@@ -188,10 +244,10 @@ The other big issue with it is that no meaning can be extracted from the matrix.
 
 \subsection{Word Embedding}
 To resolve the two aforementioned problems with one-hot encodings, word embeddings were created, also known as dense word vectors. \citep{neuralnetworkmethods} 
-Here, instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional or 1024-dimensional are common when dealing with very large vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, direction could also be a useful tool to extract meaning from the embedding.\newpage
+Here, instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional or 1024-dimensional are common when dealing with very large vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, direction could also be a useful tool to extract meaning from the embedding.\newpage %Temp for formatting, don't forget it's here
 
 \begin{wrapfigure}{r}{0.25\textwidth}
-\includegraphics[width=0.9\linewidth]{msccls/embedding_direction.png} 
+\includegraphics[width=0.9\linewidth]{msccls/explanatory_images/embedding_direction.png} 
 \caption{Small example of a word embedding space}
 \label{fig:direction}
 \end{wrapfigure}
@@ -206,7 +262,7 @@ This bit is after the picture, that should be to the right of the last paragraph
 
 \section{Evaluation}
 \subsection{F1-score, precision, accuracy}
-\chapter{Approach}
+
 
 \section{Baseline - COSMIC}
 \begin{itemize}
@@ -218,7 +274,11 @@ NLP technique, categorization, ML, supervised/unsupervised,
 Mechanical turks to 
 Finns både text och audio på MELD, \citep{zhang2019modeling} visar att text för sig är bättre än ljud men att text+ljud > text
 train, dev(validation), test, man testar på dev under development, först på test efter man är klar
+
+\chapter{Implementation}
+
 \section{Datasets}
+
 \subsection{Approach} 
 \section{Method}
 Google Colab
@@ -249,7 +309,24 @@ Sentiment analysis, varför valde vi inte det?
 \chapter{Evaluation}
 
 \section{Results}
+
+These are our results
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+\begin{tabular}{|c|cc|cc|cc|cc|}
+\hline
+\multirow{2}{*}{Methods} & \multicolumn{2}{c|}{MELD 34}            & \multicolumn{2}{c|}{DailyDialog 45}     & \multicolumn{2}{c|}{IEMOCAP 34}         & \multicolumn{2}{c|}{EmoryNLP 23}        \\ \cline{2-9} 
+                         & \multicolumn{1}{c|}{W-Avg F1} & Loss & \multicolumn{1}{c|}{W-Avg F1} & Loss & \multicolumn{1}{c|}{W-Avg F1} & Loss & \multicolumn{1}{c|}{W-Avg F1} & Loss \\ \hline
+Cosmic                   & 64.14                         & 2.68 & 60.01                         & 2.94 & 58.77                         & 0.96 & 42.55                         & 2.48 \\ \hline
+Vår modell               &                               &      &                               &      &                               &      &                               &      \\ \hline
+\end{tabular}
+\end{center}
+
+
 \section{Discussion}
+This is the discussion about our results
 
 
 \chapter{Conclusions}
