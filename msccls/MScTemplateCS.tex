@@ -186,7 +186,7 @@ y = f(g(x)) =
 
 \subsection{Gated Recurrent Unit - GRU}
 A gated recurrent unit (GRU) is neural network architecture introduced in 2014 by \citet{cho2014learning} and is considered an improvement to the traditional recurrent neural network. Although fairly new it is already a well-established variant of recurrent neural networks. A GRU is quite useful for solving the vanishing gradient problem \citep{hochreiter1998} that might occur in recurrent neural networks. The vanishing gradient problem occurs in machine learning when the gradient progressively decreases, which prevents the adjustments of the weight's values. It has also been shown that GRUs have had better performance on smaller and less frequent datasets \citep{Gruber2020AreGC}.
-GRUs is primarily constructed of an update gate, a reset gate and a current memory gate. The update gate regulates the amount of information that is passed along to the next state, while the reset gate on the other hand decides the amount of past information that is going to being disregarded henceforth. 
+Basic GRUs are primarily constructed of an update gate and a reset gate. The update gate regulates the amount of information that is passed along to the next state, while the reset gate on the other hand decides the amount of past information that is going to be disregarded henceforth. 
 
 \begin{quote}
 Snacka mer om current memory gate eller ta bort helt
@@ -195,6 +195,8 @@ Snacka mer om current memory gate eller ta bort helt
 
 
 \subsection{Long Short-Term Memory - LSTM}
+A basic LSTM-unit has input gate, output gate and forget gate. 
+1997 Hochreiter
 
 \begin{quote}
     Ta bara med ifall vi bestämmer oss att ändra från GRU till LSTM i modellen
