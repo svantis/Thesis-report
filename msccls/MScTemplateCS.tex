@@ -114,7 +114,9 @@ The primary aim of this thesis is to investigate whether or not voice call analy
 \textit{What level of effectiveness can be reached compared to a human manually analyzing the data?} 
 
 \section{Terminology}
-NLP, ML, Speech-to-text och (STT), API. Modality. Kan också kallas för Glossary and Abbreviations
+NLP, ML, Speech-to-text och (STT), API. Modality. RNN, GRU, LSTM, BPTT(?) 
+
+Kan också kallas för Glossary and Abbreviations
 \section{Delimitations}
 Delimitations are choices made by the researcher which should be mentioned. They describe the boundaries that you have set for the study.
 \section{Contributions}
@@ -126,10 +128,22 @@ Potentialen av applications
 
 
 \chapter{Theory}
+
+blablabla information om de olika fields of study
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.4]{msccls/explanatory_images/map_of_techniques.png}
+    \caption{Relations between the related fields of study }
+    \label{fig:map}
+\end{figure}
+
 \section{Machine Learning}
 Machine learning \citep{franoischollet2017learning} is a field of study in artificial intelligence that aims to train a system to solve a problem, rather than to explicitly program it. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
 In \textbf{supervised learning} \citep{100pageBurkov}, which is one of the two main types of tasks in machine learning, the dataset is the collection of labeled examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^N.$ Each element $\mathbf{x}_i$ is a feature vector that contains a value describing the example somehow and $y_i$ is a label, which is either a finite set of classes or a real number. The purpose of supervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs information that allows deducing the label y for this feature vector.) 
 The other main type of tasks in machine learning is \textbf{unsupervised learning}. The dataset for unsupervised learning is $\{ (\mathbf{x}_i)\}_{i=1}^N$ where $\mathbf{x}_i$ is a feature vector. The goal of unsupervised learning is to use the dataset to produce a model that takes a feature vector x as input and outputs either another vector or a value. 
+
+
 
 
 
@@ -175,41 +189,42 @@ y = f(g(x)) =
 
 
 \begin{itemize}
-    \item Neurons
-    \item Weights and connections 
-    \item Backpropagation function
-    \item gradient
+    \item A central algorithm in deep learning is Back-propagation algorithm/function. The fundamental trick in deep learning is to use this score as a feedback signal to adjust the value of the weights a little, in a direction that will lower the loss score for the current example. This is the job of the optimizer. 
+    \item gradient (räcker med vanishing gradient problem?)
     \item Deep learning = multiple layers of neural networks
 \end{itemize}
 
 
 
 \subsection{Gated Recurrent Unit - GRU}
-A gated recurrent unit (GRU) is neural network architecture introduced in 2014 by \citet{cho2014learning} and is considered an improvement to the traditional recurrent neural network. Although fairly new it is already a well-established variant of recurrent neural networks. A GRU is quite useful for solving the vanishing gradient problem \citep{hochreiter1998} that might occur in recurrent neural networks. The vanishing gradient problem occurs in machine learning when the gradient progressively decreases, which prevents the adjustments of the weight's values. It has also been shown that GRUs have had better performance on smaller and less frequent datasets \citep{Gruber2020AreGC}.
-Basic GRUs are primarily constructed of an update gate and a reset gate. The update gate regulates the amount of information that is passed along to the next state, while the reset gate on the other hand decides the amount of past information that is going to be disregarded henceforth. 
-
-\begin{quote}
-Snacka mer om current memory gate eller ta bort helt
-\end{quote}
+A gated recurrent unit (GRU) is neural network architecture introduced by \citet{cho2014learning} and is considered an improvement to the traditional recurrent neural networks. Basic GRU nodes are primarily constructed of an \textit{update gate} and a \textit{reset gate}. The update gate regulates the amount of information that is passed along to the next state, while the reset gate on the other hand decides the amount of past information that is going to be disregarded henceforth. 
+Although fairly new it is already a well-established variant of recurrent neural networks. In comparison to LSTM layers, GRU layers are cheaper to run since they use less parameters, but have less representational power. It has been shown that GRU layers have had better performance on smaller and less frequent datasets than LSTM layers \citep{Gruber2020AreGC}.
 
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.4]{msccls/explanatory_images/gru.png}
+    \caption{A GRU node}
+    \label{fig:gru_node}
+\end{figure}
 
 \subsection{Long Short-Term Memory - LSTM}
-A basic LSTM-unit has input gate, output gate and forget gate. 
-1997 Hochreiter
+Another widely used neural network architecture is the Long Short-Term Memory (LSTM). It was proposed by \citet{hochreiter1997} as a solution to the vanishing gradient problem \citep{hochreiter1998}, that might occur in recurrent neural networks, and has barely been changed since. The vanishing gradient problem occurs in machine learning when the gradient progressively decreases, which prevents the adjustments of the weight's values. 
 
-\begin{quote}
-    Ta bara med ifall vi bestämmer oss att ändra från GRU till LSTM i modellen
-    In comparison to GRUs, LSTMs are   
+As illustrated in \ref{fig:lstm_node} a LSTM node consists of an \textit{input gate}, an \textit{output gate}, a \textit{forget gate} and a \textit{cell state}. 
+\begin{itemize}
+    \item The input state controls the extent of data to write onto the internal cell-state.
+    \item The output state controls the extent of data to pass as output. 
+    \item The forget gate, similarly to the GRUs reset gate, decides how much of the previous data is irrelevant and will be ignored. 
+    \item The cell state stores the previous state of a node and passes it on to its following node. 
+\end{itemize}
 
-\end{quote}
-
-
-
-
-
-
-
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.4]{msccls/explanatory_images/lstm.png}
+    \caption{A LSTM node}
+    \label{fig:lstm_node}
+\end{figure}
 
 
 \section{Word Vectors}
@@ -246,7 +261,7 @@ The other big issue with it is that no meaning can be extracted from the matrix.
 
 \subsection{Word Embedding}
 To resolve the two aforementioned problems with one-hot encodings, word embeddings were created, also known as dense word vectors. \citep{neuralnetworkmethods} 
-Here, instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional or 1024-dimensional are common when dealing with very large vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, direction could also be a useful tool to extract meaning from the embedding.\newpage %Temp for formatting, don't forget it's here
+Here, instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional or 1024-dimensional are common when dealing with very large vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, direction could also be a useful tool to extract meaning from the embedding. %Temp for formatting, don't forget it's here
 
 \begin{wrapfigure}{r}{0.25\textwidth}
 \includegraphics[width=0.9\linewidth]{msccls/explanatory_images/embedding_direction.png} 
@@ -262,8 +277,55 @@ This bit is after the picture, that should be to the right of the last paragraph
 
 \subsection{RoBERTa}
 
+
+
 \section{Evaluation}
-\subsection{F1-score, precision, accuracy}
+There are many different metrics that can be used to evaluate a machine learning model, based on what kind of model and what its purpose is. For classification models, many of the metrics are based on a confusion matrix \citep{FAWCETT2006861}. In a confusion matrix, one of the axis represent the actual class of the instance is trying to predict and the other represents what instance the model predicted. The most basic and common confusion matrix is a $2 \cdot 2$ matrix, as seen in Figure \ref{fig:confusion}. In this, we have four different squares: 
+\begin{itemize}
+    \item TP means that the model was correct in predicting true
+    \item TN means that the model was correct in predicting false
+    \item FP means that the model was incorrect in predicting true
+    \item FN means that the model was incorrect in predicting false 
+\end{itemize}
+
+For cases where classification happens in a higher dimensionality than binary, the same logic is used, just on a bigger scale. 
+
+
+
+%kan snacka om Type I och Type II errors om mer text behövs.
+
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth/2]{msccls/explanatory_images/confusion_matrix.png}
+    \caption{Binary Confusion Matrix}
+    \label{fig:confusion}
+\end{figure}
+
+
+
+\subsection{Accuracy}
+One of the simplest metrics used, accuracy quantifies how many percent of predictions that the model got right and is calculated by taking all instances where our model predicted true and dividing it with all instances.
+
+$$\frac{TP + TN}{TP + TN + FP + FN}$$
+
+If we have a balanced data set with a similar amount of true and false instances, this is very valuable information. If, however, our set is inbalanced and contains e.g. 90 percent true instances and only 10 percent false, the model can achieve a 90 percent accuracy by simply predicting true on every instance so the accuracy suddenly becomes useless. 
+
+\subsection{Precision}
+Precision is a metric that quantifies 
+
+\subsection{Recall}
+
+\subsection{F1-score}
+
+
+\subsection{Loss}
+
+\section{Overfitting}
+
+
+
 
 
 \section{Baseline - COSMIC}
@@ -280,7 +342,7 @@ train, dev(validation), test, man testar på dev under development, först på t
 \chapter{Implementation}
 
 \section{Datasets}
-
+Filip
 \subsection{Approach} 
 \section{Method}
 Google Colab
