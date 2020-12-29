@@ -130,6 +130,7 @@ Potentialen av applications
 \chapter{Theory}
 
 blablabla information om de olika fields of study
+Deep learning is mostly successive neural networks but there are other types as well. Deep belief networks. 
 
 \begin{figure}[h!]
     \centering
@@ -151,16 +152,7 @@ The other main type of tasks in machine learning is \textbf{unsupervised learnin
 
 Neural networks are machine learning systems loosely inspired by biological neural networks. A neural network is a collection of connected nodes or neurons that was first mentioned in \citet{mcculloch1943}. A neuron \citep{dawson1998ann} is an information-processing unit that receives inputs and produces a single output that can be sent to multiple other neurons. To find the output of a neuron the weighted sum of all inputs is weighted by the weights all connecting to the neuron. This weighted sum is then passed through an activation function to provide the output.
 
-\begin{quote}
-RNN gate    
-\end{quote}
 
-
-
-\begin{quote}
-    The learning of the error is the cost function of the network and feeding back is called backpropagation.
-
-\end{quote}
 
 \begin{figure}[htp]
     \centering
@@ -174,7 +166,7 @@ RNN gate
     g(x_1, x_2, x_3,...,x_n) = g(x) = \sum_{i=1}^n  xi
 \end{equation}
 
-Here, $g(x)$ takes the inputs $x_1, x_2, x_3,...,x_n$, while the activation function $f(x)$ defines the output. An example of a well known activation function is ReLU, Rectified linear unit, which has the following function. 
+Here, $g(x)$ takes the inputs $x_1, x_2, x_3,...,x_n$, while the activation function $f(x)$ defines the output. An example of a well known activation function is \textit{ReLU}, Rectified linear unit, which has the following function. 
 
 \begin{equation}
 y = f(g(x)) =
@@ -184,15 +176,16 @@ y = f(g(x)) =
 \end{cases}
 \end{equation}
 
+Neural networks can in turn be structured together and form multiple layers that progressively learn. These networks fall under the deep learning umbrella. Deep learning has several closely relevant definitions, where \citet{deng2014deep} mentions the following:
+
+\begin{quote}{A class of machine learning techniques that exploit many layers of non-linear information processing for supervised or unsupervised feature extraction and transformation, and for pattern analysis and classification}
+\end{quote}
+
+Each of the layers in a deep learning network manipulate their input data in some way, and the result is stored in the layer's weights. The results are monitored with the help of the \textit{loss function}. The loss function returns a distance score that gives an indication on how far off the networks previous prediction was from the true values \citep{franoischollet2017learning}. The phenomena of reducing the distance score that the loss function produces is called training. 
+Using the score produced by the loss function as feedback, the \textit{backpropagation} algorithm computes the \textit{gradient}, a multi variable generalization of the derivative, which is then used to adjust the weights in such a way that the distance score produced by the loss function is minimized. 
 
 
 
-
-\begin{itemize}
-    \item A central algorithm in deep learning is Back-propagation algorithm/function. The fundamental trick in deep learning is to use this score as a feedback signal to adjust the value of the weights a little, in a direction that will lower the loss score for the current example. This is the job of the optimizer. 
-    \item gradient (räcker med vanishing gradient problem?)
-    \item Deep learning = multiple layers of neural networks
-\end{itemize}
 
 
 
@@ -213,8 +206,8 @@ Another widely used neural network architecture is the Long Short-Term Memory (L
 
 As illustrated in \ref{fig:lstm_node} a LSTM node consists of an \textit{input gate}, an \textit{output gate}, a \textit{forget gate} and a \textit{cell state}. 
 \begin{itemize}
-    \item The input state controls the extent of data to write onto the internal cell-state.
-    \item The output state controls the extent of data to pass as output. 
+    \item The input gate controls the extent of data to write onto the internal cell-state.
+    \item The output gate controls the extent of data to pass as output. 
     \item The forget gate, similarly to the GRUs reset gate, decides how much of the previous data is irrelevant and will be ignored. 
     \item The cell state stores the previous state of a node and passes it on to its following node. 
 \end{itemize}
@@ -226,6 +219,8 @@ As illustrated in \ref{fig:lstm_node} a LSTM node consists of an \textit{input g
     \label{fig:lstm_node}
 \end{figure}
 
+\section{Natural Language Processing - NLP}
+Känns vettigt att ha som section
 
 \section{Word Vectors}
 Word vectors are a type of word representation where texts are turned into numbers
@@ -280,21 +275,7 @@ This bit is after the picture, that should be to the right of the last paragraph
 
 
 \section{Evaluation}
-There are many different metrics that can be used to evaluate a machine learning model, based on what kind of model and what its purpose is. For classification models, many of the metrics are based on a confusion matrix \citep{FAWCETT2006861}. In a confusion matrix, one of the axis represent the actual class of the instance is trying to predict and the other represents what instance the model predicted. The most basic and common confusion matrix is a $2 \cdot 2$ matrix, as seen in Figure \ref{fig:confusion}. In this, we have four different squares: 
-\begin{itemize}
-    \item TP means that the model was correct in predicting true
-    \item TN means that the model was correct in predicting false
-    \item FP means that the model was incorrect in predicting true
-    \item FN means that the model was incorrect in predicting false 
-\end{itemize}
-
-For cases where classification happens in a higher dimensionality than binary, the same logic is used, just on a bigger scale. 
-
-
-
-%kan snacka om Type I och Type II errors om mer text behövs.
-
-
+There are many different metrics that can be used to evaluate a machine learning model, based on what kind of model and what its purpose is. For classification models, many of the metrics are based on a confusion matrix \citep{FAWCETT2006861}. In a confusion matrix, one of the axis represent the actual class of the instance the model is trying to predict and the other represents what instance the model predicted. The most basic and common confusion matrix is a binary $2 \cdot 2$ matrix, as seen in Figure \ref{fig:confusion}. In binary cases, the instances usually can be represented as a yes or no question, such as \textit{is there a bird in this picture?}
 
 \begin{figure}[h!]
     \centering
@@ -303,20 +284,47 @@ For cases where classification happens in a higher dimensionality than binary, t
     \label{fig:confusion}
 \end{figure}
 
+\begin{itemize}
+    \item TP means that the model was correct in predicting positive
+    \item TN means that the model was correct in predicting negative
+    \item FP means that the model was incorrect in predicting positive
+    \item FN means that the model was incorrect in predicting negative
+\end{itemize}
+
+Whenever our model makes a prediction on an instance during training, we increment the corresponding cell in the matrix, letting us see and draw conclusions based on how our model performed. 
+For cases where we have multi-class classification instead of binary, such as when determining emotions, the same logic and matrix is used but on a bigger scale and with the specific classes instead of positive and negative. The equations provided in subsequent sections to display how to calculate metrics are identical for multi-class context, but the classification instead represents the sum of the classification for each class. For instance, if determining if an emotion is \textit{Neutral}, \textit{Happy}, or \textit{Angry}, $TP_{n}$ would represent when it got neutral correct, and TP would be the sum of all emotion predictions it got correct.  
+
+
+
+%kan snacka om Type I och Type II errors om mer text behövs.
+
+
+
+
 
 
 \subsection{Accuracy}
-One of the simplest metrics used, accuracy quantifies how many percent of predictions that the model got right and is calculated by taking all instances where our model predicted true and dividing it with all instances.
+One of the simplest metrics used, accuracy quantifies how many percent of predictions that the model got right and is calculated by taking all instances where our model predicted positive and dividing it with all instances.
 
 $$\frac{TP + TN}{TP + TN + FP + FN}$$
 
-If we have a balanced data set with a similar amount of true and false instances, this is very valuable information. If, however, our set is inbalanced and contains e.g. 90 percent true instances and only 10 percent false, the model can achieve a 90 percent accuracy by simply predicting true on every instance so the accuracy suddenly becomes useless. 
+If we have a balanced data set with a similar amount of positive and negative instances, this can give valuable information on the performance of the model since getting predictions right is the goal of any model. If, however, our set is imbalanced and contains e.g. 90 percent negative instances and only 10 percent positive, the model can achieve a 90 percent accuracy by simply predicting negative on every instance so the accuracy suddenly becomes useless.
 
 \subsection{Precision}
-Precision is a metric that quantifies 
+Precision is a metric that quantifies how many of the instances predicted positive that actually were true. It's calculated by taking all of the instances where the model predicted positive and was correct, and dividing it by all the instances where it predicted positive.
+
+$$\frac{TP}{TP + FP}$$
+
+Precision gives us information on how accurate the model is when predicting an instance to be true. This is useful when dealing with instances where it's important to not give a false positive. If we have a model that is trying to predict whether or not a suspect is guilty of a certain crime, a high precision would make it unlikely for a innocent person to be determined a criminal. 
+Precision does not give any information on the number of false negatives present, meaning that a high precision could mean that the model seldom identifies a person, but when it does identify someone, it's likely that said person is guilty.
+
+When looking at multiple classes, the formula remains the same but with TP and FP representing the sum of all TPs and FPs
 
 \subsection{Recall}
 
+How many did we get right, of all that were actually right
+
+False negative, such as illness
 \subsection{F1-score}
 
 
