@@ -20,6 +20,7 @@
 \usepackage{textcomp}
 \usepackage{calligra}
 \usepackage{nameref}
+\usepackage{float}
 
 
 
@@ -234,9 +235,9 @@ One of RNN's weaknesses is that they suffer from the \textit{vanishing gradient 
 
 %suffer from short-term memory. If a sequence is long enough, they’ll have a hard time carrying information from earlier time steps to later ones. So if you are trying to process a paragraph of text to do predictions, RNN’s may leave out important information from the beginning.
  
- \begin{figure}[!ht]
+ \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{msccls/explanatory_images/rnn.png}
+    \includegraphics[scale=0.35]{msccls/explanatory_images/rnn.png}
     \caption{A simple RNN node}
     \label{fig:rnn_node}
 \end{figure}
@@ -257,13 +258,7 @@ As illustrated in Figure \ref{fig:lstm_node}, a LSTM node consists of an \textit
     \item The cell state stores the previous state of a node and passes it on to its following node. 
 \end{itemize}
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[scale=0.5]{msccls/explanatory_images/lstm.png}
-    \caption{A LSTM node} 
-    %?? You need to mention the source of your figure if it is not yours??
-    \label{fig:lstm_node}
-\end{figure}
+
 
 
 \subsection{Gated Recurrent Unit -- GRU}
@@ -276,10 +271,17 @@ Although fairly new, it is already a well-established variant of recurrent neura
 
 %?? You cannot cite LSTM without describing them first. In addition GRU are newer than LSTMs??
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.58]{msccls/explanatory_images/lstm.png}
+    \caption{A LSTM node} 
+    %?? You need to mention the source of your figure if it is not yours??
+    \label{fig:lstm_node}
+\end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.5]{msccls/explanatory_images/gru.png}
+    \includegraphics[scale=0.58]{msccls/explanatory_images/gru.png}
     \caption{A GRU node}
     \label{fig:gru_node}
 \end{figure}
@@ -290,57 +292,19 @@ In order to train a model, there must exist some data set, either labeled or unl
 
 The training of a model is done step by step in the form of \textit{epochs}. Epochs represent the number of times that the model iterates through a data set that is intended to train the model. Following each epoch, a \textit{loss function} measures how incorrect the model's previous prediction was and produces a value for the \textit{loss}. The model will have a perfect prediction when the loss reaches zero, therefore minimizing the loss is desirable. 
 
-The \textit{backpropagation} algorithm is a fundamental tool for minimizing the loss. The algorithm starts with the loss and works its way \textit{backwards} through the layers of the network and applies the chain rule to determine how much impact each of the weights has had on the loss. This impact is then used for the \textit{gradient descent} algorithm to alter the weights in the direction of flattening out the derivative. While travelling through the function, the ultimate goal is to find where the derivative is zero and this is done for each weight in the network. Gradient descent updates the weights to match the results from the backpropagation algorithm. 
+The \textit{backpropagation} algorithm is a fundamental tool for minimizing the loss. The algorithm starts with the loss and works its way \textit{backwards} through the layers of the network and applies the chain rule to determine how much impact each of the weights has had on the loss. This impact is then used for the \textit{gradient descent} algorithm to alter the weights in the direction of flattening out the derivative. While travelling through the function, the ultimate goal is to find where the derivative is zero and this is done for each weight in the network. Gradient descent updates the weights to match the results from the backpropagation algorithm \citep{franoischollet2017learning}. 
 
 %bild på training process
 
 %Man får inte minimera lossen för aggressivt, det finns en balans, annars sker overfitting vilket är......
-
-%Overfitting is a concept in statistical analysis in which the result corresponds too closely to a certain data set. ?? This is not the definition of overfitting. Overfitting is when the model fits well the training but fails outside it?? Instead of the model learning how to notice and predict features, it simply remembers a massive amount of examples from the training set. This causes the model to perform very well on that specific data but would likely have a very high error rate on any new data. 
+%When training a model 
+%Overfitting is a concept in statistical analysis in which the  model fits well on the training set but fails when introducing new examples. Instead of the model learning how to notice and predict features, it simply remembers an unreasonable amount of examples from the training set. This causes the model to perform very well on that specific data but would likely have a very high error rate on any unseen data. 
 
 %bild på overfitting
 
-%We want to travel through the function and find the place where the derivative is zero. This is done for each weight in the network. It is accomplished by iteratively using backpropagation algorithm that finds a value closer the the derivative being zero. Gradient descent is then used to update the weights to match the result of the backpropagation algorithm. 
-
-%In order to minimize the loss you need to know what the best values for the weights to do so are. To do this, while training the model iteratively calculates the derivatives of the 
-
-%We want to travel through the function and find the place where the derivative is zero. This is done for each weight in the network. It is accomplished by iteratively using backpropagation algorithm that finds a value closer the the derivative being zero. Gradient descent is then used to update the weights to match the result of the backpropagation algorithm. 
 
 
 
-
-%Backpropagation, givet en loss och weights, så tar reda på hur mcyekt varje weight har påverkat lossen. Gradient decent använder denna infon för att uppdatera sina vikter och gör om 
-
-%direction the weights are taking the model. This is done by evaluating the derivatives of the ...in the network and that is exactly what the \textit{gradient descent} does.
-
-
-
-%so all you have to do is find all the points where the derivative goes to 0 and check for which of these points the function has the lowest value. The engine of neural networks: gradient-based optimization. Applied to a neural network, that means finding analytically the combination of weight values that yields the smallest possible loss function.
-
-
-%In gradient descent one is trying to reach the minimum of the loss function with respect to the parameters using the derivatives calculated in the back-propagation. 
-
-
-%Gradient Descent is an optimization technique that is used to find the parameters that will give the least loss.
-
-
-%gradient descent iteratively tries to find a minimum. tries to regulate the weights in order to minimize loss.
-
-
-%Datasets ger inputs till model, första lagret ..... Modellen har svaren till hands och använder dessa för att styra skeppet i rätt riktning. 
-%There exist many components to training a model .....
-%In \ref{chapter}, backpropagation and gradient descnet among other temrs were mentioned but not extensively explored. The training process can be described as the road from a standalone model to having relevant results. 
-
-
-% In this context, learning means finding a set of values for the weights of all layers in a network, such that the network will correctly map example inputs to their associated targets
-
-
-%Backpropagation
-%Gradient Descent
-%Loss (function)
-%Från början till slut, från en modell med lager till en evaluation, sen fortsätter vi snacka om det under evaluation
-%Overfitting
-%Epochs
 
 
 
@@ -518,10 +482,8 @@ Typically there are thousands of these types of interpretable direction vectors 
 
 \chapter{Implementation}
 %Summary of what the chapter is about
-This chapter is mainly focused on giving a clear description of what we have done for the duration of the project. Firstly we will describe the model that we used as a baseline. Following, we will cover our model \textit{CASTLE}, how it has been implemented and what changes were made from the baseline \textit{COSMIC}. Lastly, we will describe our setup and what corpora we used. 
+This chapter is mainly focused on giving a clear description of what we have done for the duration of the project. Firstly we will describe the model that we used as a baseline, \textit{COSMIC}. Following, we will cover our model \textit{CASTLE}, how it has been implemented and what changes were made from COSMIC. Lastly, we will describe our setup and what corpora we used. 
 %??In your text, you present COSMIC first. Change your intro so that it corresponds to your text??. 
-
-
 
 We based our research strategy on the work by \citet{bouthillier:hal-02447823} that summarizes and reviews the experimental procedures that are most commonly used in the field of machine learning.
 
@@ -686,13 +648,13 @@ Each of our corpora are structured similarly. They contain a training set, a tes
 
 
 \subsection{Corpus Excerpts}
-
+\label{corpus_excerpts}
 \paragraph{MELD.} The annotated emotions in MELD are chosen by the majority verdict of five independent \textit{Amazon mechanical turks}. Each one of these are tasked to manually examine utterances one by one and then select what emotion out of the options is most suited for that utterance.
 %?? Here have afew intro words as for IEMOCAP ??
 \newenvironment{pag}{\fontfamily{pag}\selectfont}{\par}
 
 
-\begin{table}[!ht]
+\begin{table}[H]
     \begin{pag}
 
     \centering
@@ -715,7 +677,7 @@ Joey: & Ooh! Ah! Okay! & \textit{Fear} \\
 \paragraph{IEMOCAP.}
 IEMOCAP determines the emotion of an utterance through the response of four independent observers. If the observers can reach a clear consensus, that consensus is chosen as the motion, otherwise, it is put as undecided.  
 
-\begin{table}[!ht]
+\begin{table}[H]
     \begin{pag}
 
     \centering
@@ -806,8 +768,7 @@ CASTLE         & \textbf{46.16 s} & \textbf{27.10 s} & \textbf{43.02 s}       \\
 
 
 \chapter{Discussion}
-In this chapter, we discuss and analyze the results of CASTLE as well as the project itself. 
-
+In this chapter we start by analyzing the results that CASTLE achieved. Consequently, the limitations that impeded the project will be mentioned and discussed. Finally we will mention in what ways the project can further be explored. 
 
 
 
@@ -846,10 +807,13 @@ The primary improvement we implemented was replacing an existing GRU layer with 
 
 
 \section{Limitations}
+\label{limitations}
 
-At the start of this project, the scope was a lot larger than the one explored during this thesis. Originally the model was intended to also perform keyword extraction in addition to emotion recognition. This was based on discussions with Telavox, where the idea was a model that could identify the topic of the conversation and the emotions of the parties involved. Unfortunately, a corpus fitting for this task does not exist at this time. 
+At the start of this project, the scope was a lot larger than the one explored during this thesis. Originally the model was intended to also perform keyword extraction in addition to emotion recognition. This was based on discussions with Telavox, where the idea was a model that could identify the topic of the conversation and the emotions of the parties involved. Unfortunately, a corpus fitting for this task does not exist at this time. This meant that in order to fulfill the original scope, we would have to both create and annotate such a corpus. Such a task could be considered a master's thesis by itself and certainly was not possible to complete in tandem with creating a model, at least not in the given time frame. As the project is only intended to run for 20 weeks, we had to make a decision about how to proceed and we decided that a model producing state-of-the-art results but not in customer service would be more rewarding, for both us and Telavox, than a specialized customer service model providing average results. 
 
-%crossroads i att skapa ett corpus som passar. gick inte för tidsbrist
+When deciding the scope, we also underestimated just how time consuming this project was going to be. The initial thought of both emotion recognition and keyword extraction, even with a specialized corpus available from the start, would be a difficult challenge to complete in the time frame. As we feel that more time could have been spent on optimization with potential better results for EmoryNLP, adding a wholly new task in the form of keyword extraction would most likely have produced lacking results for both tasks.
+
+As the laptops we were using did not contain a GPU, running our code locally was not possible and we were instead bound by the rules of Google Colab. One of these rules is that no notebook can run for more than 24 hours straight. Hyperparameter optimization is a time consuming task that is solved by trial and error, and this restriction meant that we could not run as many trials at a time as we wanted which in turn led to less optimization as there simply was not enough time.
 
 
 %Tid på Colab max 24h
@@ -867,20 +831,23 @@ The reason for this is twofold. Firstly, DailyDialog is close to a magnitude lar
 \section{Future Work}
 
 
-Considering the fact that CASTLE did not produce state-of-the-art results for the EmoryNLP corpus, the most natural continuation for the project is to have CASTLE achieve this goal.  
+Considering the fact that CASTLE did not produce state-of-the-art results for the EmoryNLP corpus, the most natural continuation for the project is to have CASTLE achieve this goal. Our proposal is to simply spend more time with hyperparameter optimization and explore what results that might provide. Even though CASTLE managed to achieve state-of-the-results for MELD and IEMOCAP, an extensive hyperparameter optimization could possibly improve the results further.  
 
-%For a future usage of CASTLE it would be beneficial to have access to machines with 
-%Provided with sufficient hardware resources CASTLE would be able to use all of its potential.
+%DailyDialog? 
 
-Another natural continuation for the project is to expand the scope to what it initially was defined as. The first proposed goal of the project was to create a model for analyzing written customer service conversations and using keyword extraction as a complement to said analysis. 
+Another natural continuation for the project is to expand the scope to what it initially was defined as. As stated in \nameref{limitations}, the initial goal of the project was to create a model for analyzing written customer service conversations and using keyword extraction as a complement to said analysis. CASTLE could very well be used as a framework for completing this type of task.
 
-CASTLE is undoubtedly able to analyze written conversations with great success. However, the corpora used for training CASTLE are not completely suited for customer service specific dialogues. When searching for appropriate corpora, there was no customer-service themed corpus annotated with emotions available. One possibility is to create such a corpus either by using an already existing customer service related corpus and annotating it or by creating a corpus from scratch using recorded customer service conversations as a basis. 
+
+CASTLE is undoubtedly able to analyze written conversations with great success. However, the corpora used for training CASTLE are not completely suited for customer service specific dialogues. When searching for appropriate corpora, there was no customer-service themed corpus annotated with emotions available. One possibility is to create such a corpus using an already existing unannotated customer service related corpus and labelling it with emotions. A couple of methods has previously been mentioned in section \nameref{corpus_excerpts} for how a corpus can be annotated with emotions. 
+
+
+In the same manner that CASTLE built upon the work of COSMIC, other projects can achieve even better results by building upon CASTLE. 
+
 
 
 %som vi nämner i limitations 
 
 
-%Lack of resources, vad man kan göra med mer resources. Man är inte restricted till services som t.ex. Colab som hindrar en att hogga resurser längre än 24h. 
 %Utöka scope till vad det var från början vilket var, emotion recognition i samtal. Både i realtid och transcribed calls. Keyword extraction kan användas som ett supplement. 
 %Skapa ett dataset specifikt för customer service
 %Ytterligare ändringar som kan ge state-of-the-art
@@ -890,11 +857,9 @@ CASTLE is undoubtedly able to analyze written conversations with great success. 
 
 
 \chapter{Conclusions}
-When we started this project, our goal was to find answers to the research questions mentioned in section \ref{research_questions}.
+When we started this project, our goal was to find answers to the research questions mentioned in section \ref{research_questions}. After completing this project, it is safe to say that creating a model capable of fulfilling our primary aim was possible, as CASTLE is just that. CASTLE also proves that an LSTM architecture can in fact outperform a GRU one. When comparing CASTLE to the previous state-of-the-art models we show, as presented earlier, that CASTLE surpasses those models. Our secondary aim and last research question unfortunately has to remain unanswered due to time limitations. All in all, we consider CASTLE a success as it produces state-of-the-art results for two corpora and has the potential of achieving it for the remaining two as well, thus fulfilling our primary aim.  
 
-%Ett tydligt exempelt på när teori inte överensstämmer med verkligheten. 
 %Able to produce 
-%Ta med lägga till som residual i future work.
 
 
 % Should use consistent formatting when it comes to Names ("FirstName LastName", or "F. LastName")
