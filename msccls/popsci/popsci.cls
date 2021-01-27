@@ -121,6 +121,9 @@
 \postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{black} \par\end{flushleft} \vskip -1 em  \HorRule \vskip -4em} % Horizontal rule after the title
 
 
+
+
+
 \newcommand{\theabstract}[1]{
 %\vskip -35em
 
@@ -137,12 +140,15 @@
 
 
  \end{@twocolumnfalse}
-]
+ 
+\begin{figure}[!bth] % Use pictures in your pop-vet!
+\includegraphics[width=\textwidth]{msccls/popsci/popsci_image.png} 
+%\caption{En fin bild}
+\end{figure}
+
 
 
 }
-
-
 \ifx \@theabstract \@empty
 		\ClassWarning{cslthse-msc}{The abstract is missing. Use \protect\theabstract{text}.}
 \fi

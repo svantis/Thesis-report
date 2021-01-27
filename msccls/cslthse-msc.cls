@@ -280,7 +280,7 @@
 	\noindent\rule{\linewidth}{1pt}\begin{center}\Huge\bfseries
 	
 }
-	\posttitle{\par \vskip 0.5em \ifx \@subtitle \empty \vskip 1em \else {\Large(\@subtitle)} \fi \end{center}\noindent\rule{\linewidth}{1pt}\vskip 0.5em}
+	\posttitle{\par \vskip 0.5em \ifx \@subtitle \empty \vskip 1em \else {\Large\@subtitle} \fi \end{center}\noindent\rule{\linewidth}{1pt}\vskip 0.5em}
 	\predate{\vskip 5em \begin{center}\Large}
 	\postdate{\par\vfill {\large {\@thesistype}'s thesis work carried out at 
 		\ifx\@company\empty
