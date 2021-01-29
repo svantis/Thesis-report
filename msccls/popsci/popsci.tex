@@ -56,7 +56,14 @@ Detta görs oftast med hjälp av maskininlärning, då det hade varit alldeles f
 
 %För att öka prestandan i dagens processorer finns det vektorenheter och flera kärnor i processorer. Vektorenheten finns till för att kunna utföra en operation på en mängd data samtidigt och flera kärnor gör att man kan utföra fler instruktioner samtidigt. Ofta är processorerna designade för att kunna stödja en mängd olika datorprogram. Detta resulterar i att det blir kompromisser som kan påverka prestandan för vissa program och vara överflödigt för andra. I t.ex. videokameror, mobiltelefoner, medicinsk utrustning, digital kameror och annan inbyggd elektronik, kan man istället använda en processor som saknar vissa funktioner men som istället är mer energieffektiv. Man kan jämföra det med att frakta ett paket med en stor lastbil istället för att använda en mindre bil där samma paketet också skulle få plats.
 
-I mitt examensarbete har jag skrivit en modell som kan användas för att snabbt designa en processor enligt vissa parametrar. Dessa parametrar väljs utifrån vilket eller vilka program man tänkta köra på den. Vissa program kan t.ex. lättare använda flera kärnor och vissa program kan använda korta eller längre vektorenheter för dess data.
+I vårt examensarbete har vi förbättrat en av de bäst presterande modellerna som finns i dagsläget. Vi har ändrat den inre arkitekturen men bibehållit dess logik och beteende. Vad detta leder till är en förbättrad modell som vi har döpt till CASTLE. Denna "tänker" på samma sätt som tidigare men utför mer sofistikerade beräkningar för att få fram ett mer precist svar. CASTLE har testats på några av de mest förekommande dataseten inom området. Dataseten är strukturerade som dialoger mellan flertalet personer och kan vara allt ifrån improvisation till direkta utdrag ur den populära 90-tals serien Vänner. 
+
+Att testa på samma dataset som de andra gör ger mer tillförlitlighet till resultaten. 
+
+
+
+
+%I mitt examensarbete har jag skrivit en modell som kan användas för att snabbt designa en processor enligt vissa parametrar. Dessa parametrar väljs utifrån vilket eller vilka program man tänkta köra på den. Vissa program kan t.ex. lättare använda flera kärnor och vissa program kan använda korta eller längre vektorenheter för dess data.
 
 Modellen testades med olika multimedia program. Den mest beräkningsintensiva och mest upprepande delen av programmen användes. Dessa kallas för kärnor av programmen. Kärnorna som användes var ifrån MPEG och JPEG, som används för bildkomprimering och videokomprimering.
 
