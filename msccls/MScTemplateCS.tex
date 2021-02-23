@@ -80,7 +80,7 @@ As the COVID-19 pandemic created some unusual circumstances, we would like to gi
 %Leave a \textit{2cm} vertical space after the abstract and provide a few keywords relevant for your report. Use five to six words, of which at most two should be from the title.
 
 
-Conversational emotion recognition is a notoriously challenging task for computers as conversations often contain subtle nuances that are difficult to identify. In this work, we investigated the recognition of conversational emotions in a set of dialogue corpora. We started from an existing baseline and, using empirical observation; we combined it with a previously untested set of architectures. We created a new framework that builds upon the previous state of the art and complements it with more effective recurrent devices. As a result, using this framework, CASTLE, we could improve the F1-score of previously published results on two of the three corpora we evaluated.}
+Conversational emotion recognition is a notoriously challenging task for computers as conversations often contain subtle nuances that are difficult to identify. In this work, we investigated the recognition of conversational emotions in a set of dialogue corpora. We started from an existing baseline and, using empirical observation; we combined it with a previously untested set of architectures. We created a new framework, CASTLE, that builds upon the previous state of the art and complements it with more effective recurrent devices. As a result of using this framework, we could improve the F1-score of previously published results on two of the three corpora we evaluated.}
 % produces state-of the art results on several corpora commonly used as benchmarks for these types of tasks.
 % possibility of improving the results in the field of
 
@@ -104,32 +104,56 @@ Conversational emotion recognition is a notoriously challenging task for compute
 
 Natural language processing (NLP) is a field of study mainly in computer science that deals with analyzing human language in a way that computers can understand and process. According to \citet{ntlk2009}, natural language is used for everyday communication by humans, in contrast to artificial languages such as programming languages and mathematical notation. 
 
-Concretely, NLP fields of application include machine translation, information extraction, and text categorization. For the last field, text categorization consists of automatically assigning a category to a text, for instance, to decide if a message is spam or not.
+Concretely, NLP fields of application include machine translation \citep{machine_translation}, information extraction \citep{information_extraction}, and text classification \citep{text_classification}. For the last field, text classification consists of automatically assigning a class to a text, for instance, to decide if a message is spam or not.
 
-Since natural languages naturally evolve as time goes on and their adherence to structure diminishes, it is difficult to define explicit rules to follow. For this reason, there is a need for machine learning models to aid the computer in identifying these diffuse rules. 
+Since natural languages naturally evolve as time goes on and their structure changes \citep{lyons1968introduction}, it is difficult to define explicit rules to follow. As a result of this, instead of spending time trying to define these rules, including taking into account all corner cases, machine learning can be used in order to find patterns based on samples of real-world text. According to \citet{NLP_challenges} having the machine learning model find patterns in a dataset is more effective than a manual establishment of rules.
+
+
+
+
+
+
+% HÄR MÅSTE NÅGOT MER SKRIVAS
+
+
+
+
+
+
 
 To build a machine-learning model, we need structured information as input in the form of a dataset. This way, the model will be able to learn parameters that are used to analyze and automatically categorize the data. Datasets using exclusively textual input are usually referred to as \textit{corpora}. 
 
 %?? and hence the need of machine learning to replace rules?? ?? You need also to introduce more specifically your task ??
 
 \section{Purpose}
-Customer service is centered around the relationship between company and customer with the goal of pleasing the customer. This goal can be challenging to achieve, and there is no straightforward way to do so. By analyzing prior conversations, companies can gain valuable insights in the most effective way to please the customer. However, customer service is a massive industry, and it would take countless hours to analyze the conversations from even a single company manually. 
+Customer service is centered around the relationship between company and customer with the goal of pleasing the customer. This goal can be challenging to achieve, and there is no straightforward way to do so. By analyzing prior conversations between customers and service-agents, companies can gain valuable insights in the most effective way to please the customer. 
 
-The company sponsoring this project approached us with an idea to try and solve this problem using machine learning. A usual technique for these problems is \textit{sentiment analysis}, where utterances are labeled either positive or negative. We instead decided to take another route, namely \textit{emotion recognition}. Emotion recognition focuses on labeling utterances from a non-binary set of emotions instead of sentiment analysis' binary method. This allows analysis with greater specificity.  
 
-To further the academic relevance of this project, we decided that we would attempt to contribute to the field of emotion recognition by achieving state-of-the-art results. 
 
-\section{State of the art}
+The company sponsoring this project approached us with an idea to try and identify emotions in a customer service call using machine learning. This is an instance of text classification, where the emotions are the classes. This is called \textit{emotion recognition}. Emotion recognition focuses on labeling utterances from a non-binary set of emotions instead of a binary representation of for example positive or negative. This allows analysis with greater specificity.  
+
+In order to narrow the project's scope, the conversations analyzed were exclusively in English. %++written conversations
+To further the academic relevance of this project, we decided that we would attempt to contribute to the field of emotion recognition by achieving better than current state-of-the-art results. 
+
+\section{Previous work}
 %The progress of emotion recognition has been accomplished by 
 %The previous work carried out in the field of emotion recognition has 
 
-In this report, the term \emph{state of the art} will be recurringly mentioned as it is a fundamental part of our aim and result. The term refers to the highest level of achievement accomplished. A common goal in machine learning projects is to attempt to raise the bar for the current
-results across various metrics for the task that the project is trying to solve. Presenting state-of-the-art results is an excellent approach in proving that an implementation or algorithm is valid and valuable.   
+
+
+At the start of the project, we read some recently published research in the field of deep learning, mainly the article by \citet{edseee.922172720200601} that states that GRU is not as suited for small pieces of text and large corpora as LSTM. This is where we got the idea to test whether the architectural change to LSTM could improve the results. 
+
+
+In this report, the term \emph{state of the art} will be recurringly mentioned as it is a fundamental part of our aim and result. The term refers to the highest level of achievement accomplished at a certain point of time. In this project, we will refer to the highest results achieved when we started this project as state of the art. A common goal in machine learning projects is to attempt to raise the bar for the current results across various metrics for the task that the project is trying to solve. Presenting state-of-the-art results is an excellent approach in proving that an implementation or algorithm is valid and valuable.   
 
 %Previous work
 
 %Description of what it is and why it plays a big part in advancing algorithms and models. Deepminds Alphafold has led to groundbreaking results in a competitive environment. 
 
+%Related work, fråga Pierre
+% COSMIC?
+% Bouthillier? 
+% DialogXL?
 
 \section{Telavox}
 We carried out this project at Telavox AB. Telavox is a Swedish telecommunication company that specializes in business-to-business and business-to-customer unified communication as a service. As all of their customers deal in customer service, they would benefit from the previously discussed solution. Telavox, therefore, has a great interest in being able to offer this as a service. As Telavox has over 250 businesses as customers, the solution would facilitate the customer service quality worldwide.
@@ -137,12 +161,18 @@ We carried out this project at Telavox AB. Telavox is a Swedish telecommunicatio
 
 \section{Research questions}
 \label{research_questions}
-This thesis' primary aim is to create an emotion recognition model that can produce state-of-the-art results. After this, a secondary aim is to investigate whether it is possible to create a dynamic model to provide interactive support in customer service-related conversations. The following questions are used as guidelines on how to realize these aims.  
-
+This thesis' primary aim is to create an emotion recognition model that can produce better than state-of-the-art results. After this, a secondary aim is to investigate whether it is possible to create a model to assist the service-agent in customer service-related conversations in real time by providing them with the customer's emotions. The following questions are used as guidelines on how to realize these aims.  
+%
 \begin{itemize}
     \item \textit{Is it possible to create a model that fulfills our aims?}
+    %How to predict emotions??
+    %Which XXX architecture 
+    %Can we
 %?? THe first question is can we create such a model??
     \item \textit{Can we build an architecture that improves the state of the art?}
+    
+    %What 
+    %What is the performance
 %?? here your statement is too specific as you did not introduce the terms. Use vague words such as What are the different option to design an architecture and train a model?? 
 %?? I have swapped the items ??
     \item \textit{If yes, how does our model compare to other models in the same field evaluating on the same metrics?}
@@ -150,7 +180,12 @@ This thesis' primary aim is to create an emotion recognition model that can prod
     %Snacka om detta i limitations
 \end{itemize}
 
+\section{Division of work}
 
+All of the implementation has been done using pair-programming. This allowed us both to get a full understanding of the code base. In terms of writing, all chapters except \nameref{chap:theory} has had equal contribution on all parts. 
+In Theory, Filip wrote sections \ref{sect:ml} to \ref{sect:hyper} while Nick wrote \ref{sect:nlp} and \ref{sect:eval}. 
+
+\section{Contributions}
 
 
 %NLP, ML, Speech-to-text och (STT), API. Modality. RNN, GRU, LSTM, BPTT(?), utterance, speaker, dialogue, 
@@ -165,16 +200,19 @@ This thesis' primary aim is to create an emotion recognition model that can prod
 
 
 \chapter{Theory}
+\label{chap:theory}
 
 The celebrity of computer science at this time is undoubtedly \emph{artificial intelligence} (AI). A much more complex subject than most people know. Most of the complex problems in AI are solved using technologies within its sub-fields, which are illustrated in Figure \ref{fig:map}, rather than traditional artificial intelligence such as robotics \citep{bajwa_2020}. 
 
-%In order to solve most emotion recognition problems, there are two main concepts that are fundamental to build an accurate model. Firstly, the model should be created with deep learning algorithms. This enables it to find patterns that it otherwise could not be able to. Secondly, to effectively process the utterances it has been tasked to analyze, a word vector is often used to store the most commonly used words for easier analysis. ?? I propose this instead??
+%SNACKA OM NLP
 
 In order to solve most emotion recognition problems, two main concepts are fundamental to build an accurate model:
 \begin{enumerate}
 \item As shown by the recent progress in the field \citep{deep_survey}, the model should be created with deep learning algorithms. This should enable it to find patterns that it otherwise could not. 
 \item To effectively process the utterances, deep learning requires collecting an annotated corpus and design an appropriate representation for the words.
 \end{enumerate}
+
+There are namely two common architectures \citep{staudemeyer2019understanding} that are used in deep learning: Long Short-Term-Memory (LSTM) and Gated Recurrent Unit (GRU). There is also the simpler \citep{Sherstinsky_2020} Recurrent Neural Network. We will describe these three further and discuss their advantages and drawbacks. 
 
 
 \begin{figure}[h!]
@@ -185,17 +223,21 @@ In order to solve most emotion recognition problems, two main concepts are funda
 \end{figure}
 
 \section{Machine Learning}
-Machine learning \citep{franoischollet2017learning} is a field of study in artificial intelligence that aims to train a system to solve a problem rather than to program the system explicitly. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
+\label{sect:ml}
+Machine learning, according to \citet{franoischollet2017learning}, is a field of study in artificial intelligence that aims to train a system to solve a problem rather than to program the system explicitly. By being presented with large amounts of data associated with the task at hand, the system algorithmically builds a statistical model that discovers structures in the data and allows the system to identify rules for the problem. 
 In \textit{supervised learning} \citep{100pageBurkov}, which is one of the two main types of tasks in machine learning, the dataset is the collection of labeled examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^N.$ Each element $\mathbf{x}_i$ is a feature vector that contains a value describing the example somehow, and $y_i$ is a label, which is either a finite set of classes or a real number. Supervised learning aims to use the dataset to produce a model that takes a feature vector $\mathbf{x}$ as input and outputs information that allows deducing the label $y$ for this feature vector.) 
 
 The other main type of task in machine learning is \textit{unsupervised learning}. The dataset for unsupervised learning is $\{ (\mathbf{x}_i)\}_{i=1}^N$, where $\mathbf{x}_i$ is a feature vector. The goal of unsupervised learning is to use the dataset to produce a model that takes a feature vector $\mathbf{x}$ as input and outputs either another vector or a value. 
 
+Supervised learning is used for mostly classification and regression problems \citep{franoischollet2017learning}. Regression is the task of finding a function that predicts a continuous value while classification is the task of finding a function that distributes input data into classes \citep{alpaydin2014introduction}. In our work, we use supervised learning for classifying emotions in written conversations. We design our model to learn how to map utterances to specified emotions. 
 
 
 
 
 \subsection{Neural Networks and Deep Learning}
 
+
+%WHERE/WHEN ML IS NOT ENOUGH
 Neural networks are machine learning systems loosely inspired by biological neural networks. A neural network is a collection of connected nodes or neurons first mentioned in \citet{mcculloch1943}. A neuron \citep{dawson1998ann} is an information-processing unit that receives multiple inputs and produces a single output sent to multiple other neurons. To find the output of a neuron, all inputs are weighted and then summed. This weighted sum is then passed through an activation function to provide the output.
 
 
@@ -229,6 +271,9 @@ Neural networks can, in turn, be structured together and form multiple layers th
 \begin{quote}{A class of machine learning techniques that exploit many layers of non-linear information processing for supervised or unsupervised feature extraction and transformation, and for pattern analysis and classification.}
 \end{quote}
 
+Deep learning has been shown to be beneficial for solving NLP problems \citep{bhardwaj2018deep} and is predicted to become the norm when solving these types of problems \citep{otter2019survey}. Therefore, all the work in this project is done using deep learning. Because of the multiple layers in deep learning, the algorithms learn multiple levels of representation \citep{Hinton2007428} opposed to the traditional machine learning NLP systems that heavily depend on manual work \citep{young2018recent}. 
+%Deep learning, especially recurrent neural models, is able to capture the sequence information in a much better sense.
+
 Each of the layers in a deep learning network manipulates its input data in some way, and the result is stored in the layer's weights. The results are monitored with the help of the \textit{loss function}. The loss function returns a distance score that indicates how far off the network's previous prediction was from the true values \citep{franoischollet2017learning}. The concept of reducing the distance score that the loss function produces is called training.
 
 Using the score produced by the loss function as feedback, the \textit{backpropagation} algorithm computes the \textit{gradient}, a multi-variable generalization of the derivative, which is then used to adjust the weights so that the distance score produced by the loss function is minimized. 
@@ -236,10 +281,12 @@ Using the score produced by the loss function as feedback, the \textit{backpropa
 
 \subsection{Recurrent Neural Network -- RNN}
 
-One of the simplest neural network classes used in deep learning is \emph{recurrent neural networks} (RNN). RNN process either sequential data or time-series data \citep{lipton2015critical}. Since the inputs are sequential, all the inputs are dependent on each other in one way or another. RNNs are suitable for processing sequences of text, audio, and video, where every computation will be performed on each element in the sequence.
+One of the simpler neural network classes, according to \citet{Sherstinsky_2020}, used in deep learning is the \emph{recurrent neural network} (RNN) \citep{Rumelhart1986LearningRB} and can be observed in Figure \ref{fig:rnn_node}. RNN process either sequential data or time-series data \citep{lipton2015critical}. Since the inputs are sequential, all the inputs are dependent on each other. RNNs are suitable for processing sequences of text, audio, and video, where every computation will be performed on each element in the sequence \citep{Sherstinsky_2020}.
 
-One of RNN's weaknesses is that they suffer from the \textit{vanishing gradient problem} \citep{hochreiter1998}. While RNN's theoretically can process arbitrarily long sequences, they are, in practice, limited to the length of the sequence. If the sequence is too long, the network will struggle to try to look back in time longer than a few steps away. In many of cases, this will result in leaving out important information from the prediction. There are instead other alternatives that consider this weakness. 
+One of RNN's weaknesses is that they suffer from the \textit{vanishing gradient problem} \citep{hochreiter1998}. While RNN's theoretically can process arbitrarily long sequences, they are, in practice, limited to the length of the sequence. If the sequence is too long, the network will struggle to try to look back in time longer than a few steps away. For example, in emotion recognition, this can be particularly important when trying to interpret emotions if, e.g., tangents from the main of the conversation happen. In many of cases, this will result in leaving out important information from the prediction. There are instead other alternatives that consider this weakness. 
 
+
+%to understand relationships between distant events described in a book to answer questions about it
 
 %Time series. Meant to process sequences of data like text, audio, video. Neural networks that feed their output back into their inputs recursively. One of the more basic building blocks in machine learning/deep learning. A gate looks like this: 
 
@@ -255,6 +302,7 @@ One of RNN's weaknesses is that they suffer from the \textit{vanishing gradient 
 
 
 \subsection{Long Short-Term Memory -- LSTM}
+\label{LSTM}
 %?? I would have this section before GRU ??
 
 Another widely used recurrent neural network architecture is Long Short-Term Memory (LSTM). It was proposed by \citet{hochreiter1997} as a solution to the vanishing gradient problem that might occur in recurrent neural networks and has barely been changed since. The vanishing gradient problem occurs in machine learning when the gradient progressively decreases, which prevents the adjustments of the weight's values. 
@@ -268,16 +316,19 @@ As illustrated in Figure \ref{fig:lstm_node}, an LSTM node consists of an \texti
     \item The cell state stores the previous state of a node and passes it on to its following node. 
 \end{itemize}
 
+Compared to RNN, shown in Figure \ref{fig:rnn_node}, we can see that LSTM, Figure \ref{fig:lstm_node}, has a higher number gates and computations.  
+
 
 
 
 \subsection{Gated Recurrent Unit -- GRU}
+\label{GRU}
 %Byta alla "node" till "cell" för att lättare kunna referera till LSTM-celler i CASTLE
 A \emph{gated recurrent unit} (GRU) is recurrent neural network architecture introduced by \citet{cho2014learning} and is considered an improvement to the traditional recurrent neural networks. 
 
-Basic GRU nodes  are primarily constructed of an \textit{update gate} and a \textit{reset gate}. The update gate regulates the amount of information passed along to the next state, while the reset gate, much like the forget gate of LSTM, decides the amount of past information that is going to be disregarded henceforth. 
+Basic GRU nodes  are primarily constructed of an \textit{update gate} and a \textit{reset gate}, as can be seen in Figure \ref{fig:gru_node}. The update gate regulates the amount of information passed along to the next state, while the reset gate, much like the forget gate of LSTM, decides the amount of past information that is going to be disregarded henceforth. 
 
-Although fairly new, it is already a well-established variant of recurrent neural networks. Compared to \textit{LSTM} layers, GRU layers are cheaper to run since they use fewer parameters but have less representational power. It has been shown by \citet{Gruber2020AreGC} that GRU layers have had better performance on smaller and less frequent datasets than LSTM layers.
+Although fairly new, it is already a well-established variant of recurrent neural networks. Compared to \textit{LSTM} layers, GRU layers are cheaper to run since they use fewer parameters but have less representational power. It has been shown by \citet{Gruber2020AreGC} that GRU layers have had better performance on smaller datasets with less frequent recurrences of words than LSTM layers.
 
 %?? You cannot cite LSTM without describing them first. In addition GRU are newer than LSTMs??
 
@@ -298,12 +349,28 @@ Although fairly new, it is already a well-established variant of recurrent neura
 
 
 \section{Training Process}
+
+
+
+
+
 To train a model, there must exist some dataset, either labeled or unlabeled depending on whether supervised or unsupervised learning is the targeted method that feeds the model with input. When using a labeled dataset, the labels are regarded as the solution to the problem. When training a model, the goal is to find values for its weights such that the model correctly labels the given input. 
 
-The training of a model is done step by step in the form of \textit{epochs}. Epochs represent the number of times 
-the model iterates through a dataset intended to train the model. Following each epoch, a \textit{loss function} measures how incorrect the model's previous prediction was and produces a value for the \textit{loss}. The model will have a perfect prediction when the loss reaches zero, therefore minimizing the loss is desirable. 
+The training of a model is done step by step in the form of \textit{epochs}. Epochs represent the number of times the model iterates through a dataset intended to train the model. Following each epoch, a \textit{loss function} measures how incorrect the model's previous prediction was and produces a value for the \textit{loss}. The model will have a perfect prediction when the loss reaches zero, therefore minimizing the loss is desirable. 
 
 The \textit{backpropagation} algorithm is a fundamental tool for minimizing the loss. The algorithm starts with the loss and works its way \textit{backward} through the layers of the network, and applies the chain rule to determine how much impact each of the weights has had on the loss. This impact is then used for the \textit{gradient descent} algorithm to alter the weights to flatten out the derivative. While traveling through the function, the ultimate goal is to find where the derivative is zero, and this is done for each weight in the network. Gradient descent updates the weights to match the results from the backpropagation algorithm \citep{franoischollet2017learning}. 
+
+\section{Hyperparameters}
+\label{sect:hyper}
+Many parameters in a machine learning model are determined during the training process. There exists, however, parameters that must be fixed before running the algorithm. These parameters are called hyperparameters and govern the rules for how the model approaches the learning task \citep{weerts2020importance}. As there is too large a number of different hyperparameters to possibly cover them all, a select few has been chosen for us to focus on in this work. The ones we chose are \textit{dropout}, \textit{batch size}, and \textit{learning rate} \citep{hyperparameters}.
+
+\begin{enumerate}
+    \item  Batch size governs how many training examples will be utilized in each iteration. Batch size is a heavily discussed topic, with scientific conclusions being unanimous regarding a high or low value being preferential. \citep{KANDEL2020312}. A small batch size can converge faster than a larger one, but the larger batch can potentially find a lower minima that a smaller batch can not reach. A small batch size also requires a small learning rate to prevent it from overshooting the minima, but can have a significant regularization effect due to a higher variance. 
+    \item  Learning rate govern how aggressively the model is influenced by new information and has a large effect on gradient descent. A high learning rate speeds up the learning process at the risk of not converging, while a low value risk taking too long to converge \citep{learning_rate}.  %Snacka om gradient descent
+     \item Dropout is a value between 0 and 1 that regulates what percentage of learned data the model randomly chooses to forget. With a low dropout, or without it altogether, the model becomes heavily reliant on the training data with accurate predictions for it but with worse results for new data. This concept of the model becoming too reliant on the training data is called overfitting. A too high dropout hampers the learning process and causes the model to guess more than it is predicting \citep{dropout}.
+\end{enumerate}
+
+
 
 %bild på training process
 
@@ -323,16 +390,17 @@ The \textit{backpropagation} algorithm is a fundamental tool for minimizing the 
 
 
 \section{Natural Language Processing -- NLP}
-One of the reasons that make natural language processing a challenge is that natural languages are minted with unstructured types of data such as inflection, dialects, or sarcasm. Natural languages are also oftentimes ambiguous and require a context-based interpretation that computers have a hard time understanding. 
+\label{sect:nlp}
+There are several factors that make natural language processing a challenge. Natural languages are constantly changing and evolving which makes it especially difficult to define rules that dictate language \citep{neuralnetworkmethods}. Natural languages are also oftentimes ambiguous and require a context-based interpretation that computers have a hard time understanding. 
 
 %is used for classification, translation, emotion/sentiment analysis, 
 
-Emotion is a key part of human language, and therefore it comes naturally that teaching a computer to understand emotion in human language is a big part of NLP. Initially, the focus laid on sentiment analysis, a field of study focused on determining the binary polarization of a piece of text as either positive or negative. 
+Emotion is a key part of human language \citep{languageEmotion}, and therefore it comes naturally that teaching a computer to understand emotion in human language is a big part of NLP. One way to analyze emotions in text is to use sentiment analysis, which according to \citet{sentimentDefinition} is a field of study focused on determining the binary polarization of a piece of text as either positive or negative. 
 %Godtycklig bit om sentiment analysis. 
-Emotion recognition is an extension of sentiment analysis that, instead of just determining text's polarization, attributes emotion to it. This process is more challenging than sentiment analysis, as the differences between emotions are subtler than that of just positive and negative. 
-Emotion recognition has also been extended to work on different modalities, such as visual and auditory input.
+Instead of just determining text's polarization, it is possible to attribute emotion to it and this is what emotion recognition is used for \citep{introToEmoRec}. This process is more challenging than sentiment analysis, as the differences between emotions are subtler than that of just positive and negative. 
+Emotion recognition has also been extended to work on different modalities, such as visual and auditory input \citep{singh2020emotion}.
 
-Instead of working directly with raw input, it first needs to be converted into a numerical representation in order for the model to process it \citep{franoischollet2017learning}. In the case of textual input, this is done by transforming it into a \textit{word vector}.
+Instead of working directly with unprocessed input from the corpora, it first needs to be converted into a numerical representation in order for the model to process it \citep{franoischollet2017learning}. In the case of textual input, this is done by transforming it into a \textit{word vector}.
 
 
 %Emotion recognition can be applied to data in various modalities, 
@@ -372,7 +440,7 @@ The other big issue with it is that no meaning can be extracted from the matrix.
 Word embeddings were created to resolve the two aforementioned problems with one-hot encodings, also known as dense word vectors \citep{neuralnetworkmethods}. 
 Instead of creating a sparse, hardcoded vector with equal distance between words, they are learned from data and packed into a lower-dimensional vector where each dimension contains some relevant data about the word. According to \citet{franoischollet2017learning}, word embeddings that are 256-dimensional, 512-dimensional, or 1024-dimensional are common when dealing with extensive vocabularies, in contrast to the 20 000-dimensional one that would be created if one were to use one-hot encoding. 
 
-Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, the direction could also be a useful tool to extract meaning from the embedding. %Temp for formatting, don't forget it's here
+Additionally, the geometric relationship between words can and should reflect the semantic relationship between those same words. This means that synonyms and words often used together are embedded closer to each other, while words seldom used together are more distant in the embedding. In addition to distance, the direction could also be a useful tool to extract meaning from the embedding \citep{whitaker-etal-2019-characterizing}.
 
 \begin{figure}[!ht]
 \centering
@@ -386,9 +454,11 @@ Figure \ref{fig:direction} shows the four words \textit{cat}, \textit{dog}, \tex
 
 Another vector will take us both from \textit{cat} to \textit{dog} and from \textit{tiger} to \textit{wolf}, which could be interpreted as ``converting a feline to a canine''. Two meaningful transformation vectors common in the real world are ``gender'' and ``plural'' vectors. Applying a ``female'' vector to \textit{king}, returns \textit{queen}, and the same vector returns \textit{actress} if instead used on \textit{actor}. ``Plural'', following the same logic, if used on \textit{actor} will return \textit{actors}. 
 
-Typically there are thousands of these types of interpretable direction vectors in a large word embedding.
+Typically there are thousands of these types of interpretable direction vectors in a large word embedding \citep{franoischollet2017learning}. Since word embeddings are built around the relation of words, these vectors are naturally created by the sample data having a similarity in how people refer to certain things. As people refer to queen in relation to king in the same manner as they would actress to actor, this allows such vectors to exist.
 
-%\subsection{RoBERTa}
+\subsection{RoBERTa}
+Despite the numerous advantages of pre-trained word embeddings, they still contain one crucial flaw: each word is represented by one vector only. This means that words with multiple meanings depending on context is only embedded in one part of embedding space, which loses information for other use cases. In theory this problem is solved by using LSTM or GRU cells as they have memory which can be used to create a different context for the word. It has however been shown that this can be insufficient for context-heavy language features \citep{Zhang_deep}. A new method for creating context rich information is the BERT architecture provided by Google \citep{BERT}. In this work, we are using a modified version of BERT called RoBERTa \citep{RoBERTa}. RoBERTa was created by Facebook as they believed that BERT to be significantly undertrained. We are using RoBERTa Large, based and structured identically to BERT Large, containing more parameters than the normal version. The model we are using is already fine-tuned for emotion label prediction.
+
 
 %Pytorch
 %GRU
@@ -410,13 +480,14 @@ Typically there are thousands of these types of interpretable direction vectors 
 
 
 \section{Evaluation}
+\label{sect:eval}
 Many different metrics can be used to evaluate a machine learning model, depending on what kind of model and what its purpose is. For classification models, many of the metrics are based on a confusion matrix \citep{FAWCETT2006861}. 
 
 In a confusion matrix, one of the axes represents the actual class of the instance the model is trying to predict, and the other represents what instance the model predicted. The most basic and common confusion matrix is a binary $2 \cdot 2$ matrix, as seen in Figure \ref{fig:confusion}. In binary cases, the instances usually can be represented as a yes or no question, such as \textit{is there a bird in this picture?}
 
 \begin{figure}[h!]
     \centering
-    \hbox{\hspace{6em}\includegraphics[width=\textwidth/2]{msccls/explanatory_images/confusion_matrix.png}}
+    \hspace*{-3cm}\includegraphics[width=\textwidth/2]{msccls/explanatory_images/confusion_matrix.png}
     \caption{Binary Confusion Matrix}
     \label{fig:confusion}
 \end{figure}
@@ -432,12 +503,25 @@ Whenever our model predicts an instance during training, we increment the corres
 
 
 For cases where we have multi-class classification instead of binary, such as when determining emotions, the same logic and matrix is used but on a bigger scale and with the specific classes instead of positive and negative. 
+\begin{figure}[h!]
+    \centering
+    \hspace*{-4cm}\includegraphics[width=\textwidth/4*3]{msccls/explanatory_images/Multiclass_conf.png}
+    \caption{Example of a Multi-class Confusion Matrix}
+    \label{fig:multi_confusion}
+\end{figure}
+Figure \ref{fig:multi_confusion} shows an example of how the matrix could look after trying to predict emotions based on 4 classes. The rows show the actual class and the column the class the model predicted for that instance. The green squares represent the TP for each class: $TP_{Neutral}$, $TP_{Happy}$, $TP_{Angry}$, and $TP_{Sad}$, with the total sum being denoted $TP_{total}$.
 
-The equations provided in subsequent sections to display how to calculate metrics are identical for multi-class context, but the classification instead represents the sum of the classification for each class. For instance, when determining if an emotion is \textit{Neutral}, \textit{Happy}, or \textit{Angry}, $TP_{neutral}$ would represent when it got neutral correct, and TP would be the sum of all emotion predictions it got correct.  
+Most evaluation in multi-class scenarios is done on a class-based level, meaning that you observe how the model performed for each of the actual classes. This allows conclusions to be drawn about the similarity of classes and where the model requires future work. For instance, in our multi-class example, we can observe that the model often predicted angry when sad was correct, but only predicted happy in one instance.
+
+Calculating the TN, FP and FN for each class is not as straightforward as the TP. Using the neutral class as an example, $TP_{Neutral}$ is easily observed to be 15. For the neutral class, FP would be defined as the model predicting neutral and being incorrect. Since the first column of our matrix represents the model predicting neutral and the first cell is when the model is correct, the three remaining can be summed together in order to find $FP_{Neutral} = 8+5+5=18$.
+
+Inversely, $FN_{Neutral}$ are the cases where the instance is neutral but the model predicts something else. This is represented by the first row in our matrix, again after removing the first cell. $FP_{Neutral}$ can then be calculated to $6+4+5=15$.
+
+
+$TN_{Neutral}$ are the cases when the model does not predict neutral and is correct. This is represented by the remaining cells in the matrix, the ones not present in either the first row or column. $TN_{Neutral} = 11+4+2+3+9+5+1+8+9 = 52 $.
 
 
 
-%kan snacka om Type I och Type II errors om mer text behövs.
 
 
 
@@ -450,6 +534,8 @@ Accuracy quantifies how many percent of predictions the model got right and is c
 $$ Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
 
 If we have a balanced dataset with a similar amount of positive and negative instances, this can give valuable information on the model's performance since getting predictions right is the goal of any model. If, however, our set is imbalanced and contains, e.g., 90 percent negative instances and only 10 percent positive, the model can achieve a 90 percent accuracy by simply predicting negative on every instance, so the accuracy suddenly becomes useless \citep{imbalancedlearning}. 
+
+
 
 \subsection{Precision}
 Precision is a metric that quantifies how many of the instances predicted positive that were true. It is calculated by taking all of the instances where the model predicted positive and was correct and dividing it by all the instances where it predicted positive.
@@ -481,123 +567,32 @@ This lets us improve the model concerning either of the variables and not have t
 
 The macro F1-score is derived by calculating the F1-score for each class separately and then summing them up, leading to an excessive focus on the classes with fewer instances. If we assume that we are using a dataset where the \textit{neutral} class is represented in 10 000 instances and a less common emotion \textit{fear} in just 50. The model then managed to predict 9 995 of the neutral instances, but only 25 of the fear ones. When calculating the mean F1-score, the low fear score would muddy the entire score and make it appear worse, when in fact, the score for the neutral case is excellent. If we want to optimize for the minority classes, however, this lets us do just that. 
 
-To counteract this behavior of favoring the minority class, one could instead calculate the weighted F1-score. After calculating the F1-score for each class, they are weighted by the number of true instances for each class, making them proportionate before calculating the final score. This gives a score more reflecting on how the model performs, but can also favor identifying the majority class heavily, which might not be the model's goal.
+To counteract this behavior of favoring the minority class, one could instead calculate the weighted F1-score. After calculating the F1-score for each class, they are weighted by the number of actual instances for that class, making them proportionate before calculating the final score. This gives a score more reflecting on how the model performs, but can also favor identifying the majority class heavily, which typically is not be the model's goal. Favoring the majority class or classes is suitable if priority lies on predicting the more common cases.
 
-When calculating the micro F1 score, instead of calculating the F1 scores separately, the F1 score is calculated directly using the total values for TP, FN, and FP in the Precision and Recall formulas places no bias on either class. If we have an example dataset with two minority classes, \textit{anger}, and \textit{joy}, we can see that for each instance where anger is true, classifying it as joy would be an FN from the perspective of the anger class. From the perspective of the joy class, however, it would instead be an FP. Since micro calculations consider the total values for our identification labels and each FN correspond to the FP of another class, $FP = FN$, which means that $Precision = Recall$ in these cases. 
+When calculating the micro F1 score, instead of calculating the F1 scores separately, the F1 score is calculated directly using the total values for TP, FN, and FP in the Precision and Recall formulas places no bias on either class. If we again look at figure \ref{fig:multi_confusion} and focus on two of the minority classes, \textit{anger}, and \textit{joy}, we can see that for each instance where anger is true, classifying it as joy would be an FN from the perspective of the anger class. From the perspective of the joy class, however, it would instead be an FP. Since micro calculations consider the total values for our identification labels and each FN correspond to the FP of another class, $FP = FN$, which means that $Precision = Recall$ in these cases. 
 
 Precision and Recall being equal means that their mean also is equal, and thus \textit{F1-}$score_{micro} = Precision_{Micro} = Recall_{Micro}$, which incidentally also equals \textit{Accuracy} as this is the proportion of instances we got correct. This means that just like Accuracy, this is a good metric on balanced datasets but can be deceiving in an imbalanced one.
 
+In this work, we are using weighted F1 score as our method of evaluation. As weighted F1 score is more suited when predicting the majority class and we expect most conversations to contain the same common emotions, a higher correctness on these emotions are more important than the more rare ones.
 
 
 
+\chapter{Approach}
 
 
 
-\chapter{Implementation}
-%Summary of what the chapter is about
-This chapter is mainly focused on giving a clear description of what we have done for the project's duration. Firstly we will describe the model that we used as a baseline, \textit{COSMIC}. We will cover our model \textit{CASTLE}, its implementation, and what changes were made from COSMIC. Lastly, we will describe our setup and what corpora we used. 
-%??In your text, you present COSMIC first. Change your intro so that it corresponds to your text??. 
-
-We based our research strategy on the work by \citet{bouthillier:hal-02447823} that summarizes and reviews the experimental procedures that are most commonly used in the field of machine learning.
-
-\section{Baseline -- COSMIC}
-When trying to improve existing results in many machine learning fields, a baseline is used instead of starting from scratch. A baseline is an already functioning model that provides basic results to the problem at hand. This provides the opportunity to allocate resources on improving the model instead of building it from the ground up and allows the machine learning community to expand on and draw benefits from each other's work. 
-
-This project has been developed using the COSMIC model \citep{ghosal2020cosmic} as a baseline. COSMIC is a GRU-based model implemented with PyTorch that has achieved state-of-the-art results across four corpora commonly used in emotion recognition. The idea behind the model is that when classifying an utterance, the emotions of the utterances, both preceding and succeeding, are also taken into account. This way, the context of the conversation can be used to predict the emotions of individual utterances more accurately. 
-
-
-%COMSICs arkitektur bygger på att de skapar egna GRU-celler och GRU-lager som bygger på PyTorchs respektive. 
-%Filip
-
-
-Figure \ref{fig:COSMIC_arch} provides a simplified description of how COSMIC operates in a conversation between person A and person B. For each time step $t$, there is an utterance said by either A or B with the other person as a listener. At the next time-step $t+1$, the roles are alternated. For each utterance, multiple GRU-cells exist that predict both the speaker's intent and listener's response at a certain time-step. These cells are used to predict the emotion of the current utterance and the prediction of emotions in other utterances related to said utterance. 
-
-COSMIC makes use of five different states to determine what emotion to predict. 
-The four following states interact heavily with each other in a codependent manner. 
-
-\begin{itemize}
-    \item \textit{Context state} is a state shared between speaker and listener. It manages the current overall emotional state of the conversation. Affects both the Internal and External state.
-    \item \textit{Internal state} tracks for each participant what emotions they are feeling but not necessarily showing. Affects the Intent state and the Context state.
-    \item \textit{External state} portrays, for each participant, what emotions they are expressing to the other participants through both utterances and reactions. Affects the Context state.
-    \item \textit{Intent state} is a state only present for the current speaker. As the name suggests, it represents the speaker's objective is for the current utterance. For example, if paying the listener a compliment, the intent could be to make the listener happier. This does not affect any other of the three states.
-\end{itemize}
-Internal state and External state are especially codependent as they combine into the sum of a participant's emotional state. 
-
-\emph{Emotion state}, the final state, considers the current utterance, the summed emotional state through the Internal and External state, and the Intent state to predict the current utterance. This process is repeated for every utterance in every conversation in the corpus.
-
-%Softmax, relu mm
-
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[scale=0.3]{msccls/explanatory_images/COSMIC_arch.png}
-    \caption{COSMIC architecture. From \citet{ghosal2020cosmic}.}
-    \label{fig:COSMIC_arch}
-\end{figure}
-
-%?? You could write a bit more on COSMIC ??
-
-\section{CASTLE}
-Building on COSMIC, we designed CASTLE, COSMIC-based AnalySer Taking advantage of LSTM for Emotion recognition, to answer our research questions. We have made several improvements on the COSMIC baseline, one of the fundamental being replacing the internal GRU architecture with an LSTM-based architecture, as the name of the model indicates. 
-
-At the start of the project, we read some recently published research in the field of deep learning, mainly the article by \citet{edseee.922172720200601} that states that GRU is not as suited for small pieces of text and large corpora as LSTM. This is where we got the inspiration to test whether the architectural change to LSTM could improve the results. 
-
-
-COSMIC takes advantage of the \texttt{cudnn} framework in PyTorch to assist in multiple ways, such as the \texttt{backends.cudnn.benchmark}, which attempts to optimize the algorithm during runtime automatically. As we aimed to obtain as much control as possible over how the model behaved, we excluded this and other third-party features that restricted our domain of control.  
-
-COSMIC is also implemented with a \textit{residual} connection \citep{he2015deep}, which allows the model to redefine the layers as learning residual functions referencing the layer inputs. This is supposed to facilitate the training of the model. While we originally wanted to implement this feature in CASTLE, there was simply no space to do it within the project's scope. 
-
-
-%Didnt implement residual for CASTLE tidsbrist
-
-%Removed CUDA Backend since we wanted as little noise as possible interfering with our model We didnt want the reason for the results to be out of our reach. Third party. 
-
-
-%COSMIC-based AnalySer Taking advantage of LSTM for Emotion recognition
-
-
-
-
-
-\section{Experimental Setup}
-
-%We chose COSMIC as our baseline because SOTA, more experienced in PyTorch
-\subsection{Hyperparameters}
-CASTLE's performance depends on three different hyperparameters. The ones we chose are \textit{dropout}, \textit{batch size}, and \textit{learning rate} \citep{hyperparameters}:
-\begin{enumerate}
-    \item Dropout is a value between 0 and 1 that regulates what percentage of learned data the model randomly chooses to forget. This is used to combat overfitting and make sure the model is actually predicting instead of just learning the corpus structure.
-    \item  Batch size governs how many training examples will be utilized in each iteration. A larger value increases the accuracy of the gradient in trade off for a higher memory cost.
-    \item  Learning rate defines the speed at which the model updates its parameters. A high learning rate speeds up the learning at the risk of not converging, while a low value will more likely converge, sacrificing speed in the process.
-\end{enumerate}
-
-To optimize our hyperparameters, we implemented the \texttt{Tune} framework offered by \texttt{Ray}. This framework allowed us to experiment efficiently with many different configurations and provided a simple way to run trials concurrently. Most of our optimization was done with a combination of grid search and random search. Random search is a function with two parameters, \textit{start} and \textit{end}, and for each trial, it randomly selects a float from in between the two values to use for the given hyperparameter. Grid search instead takes in a list of floats as a parameter and runs a trial for each value in the list. Multiple grid searches can easily take a large amount of time to run as all possible combinations of values across all grid searches will be tested in separate trials. 
-
-Our approach was to begin with random search on parameters to get a sense of what range of values produced optimal results. Once we had established the magnitude of which we wanted our parameters to be, we tested out various combinations with grid search, keeping the ones that produced promising results and replacing the others with new trials.
-
-
-\subsection{Comparison with Current Practices}
+\section{Common Practices}
 When deciding what configuration to use for our experiments, we based our decisions on the empirical studies made by  \citet{bouthillier:hal-02447823}. Their report surveyed authors whose papers were presented at the peer-reviewed conferences NeurIPS 2019 and ICLR 2020. As the work is based on answers from relevant authors in the machine learning community, we found it appropriate to use the answers as guidelines for our setup. Instead of relying on our own intuition, basing it on the broad consensus grants the experiment a certain sense of validity. In Figure \ref{fig:HAL}, we have presented the questions and responses we took into consideration.
 
 CASTLE is fine-tuned on three hyperparameters where a combination of \textit{grid search} and \textit{random search} was used. On average, we performed 20 sets of different values for the three hyperparameters across all corpora. CASTLE was intended to be evaluated on four different corpora, but it only provided results for three of them due to hardware limitations. Our results are based upon 10 consecutive runs with the same setup. 
 
 Comparing this to the responses observed in \ref{fig:HAL}, we are in line with the majority in all but one instance, (f), where the majority base their results on 5 or fewer samples, and we instead chose to base it on 10 samples as a higher sample size tends to become a more reliable result.
 
-\subsection{Equipment}
-As for our hardware setup, we could not run and train the model on our laptops as they lack a GPU. To execute our code, we instead utilized Google Colab, a cloud-based service where users can remotely run their code on Google servers built with more powerful hardware and can handle high-demand programs such as machine learning models. Using a remote service proved to be perfectly fine for three of the four corpora we aimed to run our model on. The fourth one, \textit{DailyDialog}, unfortunately, required more memory than we were allocated and could not complete the run.
+
+%Snacka mer om varje individuell fråga på enkäten
 
 
-%Hur vi "räknade ut" våra resultat, 10 avg på best valid ->( test)
-%Epochs
-%Google Colab
-%Ray Tune för att studera hyperparametrar och automatisera
-%HAL - diskussion
 
-
-%How many sets of hyperparameters we evaluated? Vi hade i snitt 20:ish per dataset
-%4 dataset for the experiment
-%Reported 10 samples as one averge. 
-
-%Stycke där vi jömför med HAL
 
 \begin{figure}[!ht]
 
@@ -616,19 +611,6 @@ As for our hardware setup, we could not run and train the model on our laptops a
 
 
 
-
-
-
-
-
-%Lack of resources
-
-
-%Hyperparametrization with Tune
-%Learning rate
-%Dropout
-%Batch_size [RAM limitations]
-%Definitioner finns redan i terminologi
 \section{Corpora}
 
 To evaluate our model, we used four popular corpora frequently used in emotion recognition research work. We chose these corpora as we wanted our results to be comparable with the previous state of the art, namely COSMIC and the common practice observed in Figure \ref{fig:HAL}(e). As COSMIC compared its results to several other models using these corpora, the results of CASTLE will be directly comparable with COSMIC and the other models. 
@@ -710,6 +692,155 @@ Male: & Oh, really? & \textit{Undecided} \\
 \end{table}
 
 We can notice a similarity in type between the two excerpts, both being a friendly conversation between friends. Observing the emotion classification, it is clear that MELD uses more emotionally loaded words for its classification, while IEMOCAP has a more neutral spectrum. Using Joey's first line in the MELD excerpt as an example, \textit{Joy} might be considered an exaggerated description considering the utterance. 
+
+
+
+
+
+
+
+
+
+
+\chapter{Implementation}
+%Summary of what the chapter is about
+This chapter is mainly focused on giving a clear description of what we have done for the project's duration. Firstly we will describe the model that we used as a baseline, \textit{COSMIC}. We will cover our model \textit{CASTLE}, its implementation, and what changes were made from COSMIC. Lastly, we will describe our setup and what corpora we used. 
+%??In your text, you present COSMIC first. Change your intro so that it corresponds to your text??. 
+
+We based our research strategy on the work by \citet{bouthillier:hal-02447823} that summarizes and reviews the experimental procedures that are most commonly used in the field of machine learning.
+
+
+%?? You could write a bit more on COSMIC ??
+
+
+
+
+\section{Ecosystem}
+As for our hardware setup, we could not run and train the model on our computers as they lack a GPU. To execute our code, we instead utilized Google Colab, a cloud-based service where users can remotely run their code on Google servers built with more powerful hardware and can handle high-demand programs such as machine learning models. Using a remote service proved to be perfectly fine for three of the four corpora we aimed to run our model on. The fourth one, \textit{DailyDialog}, unfortunately, required more memory than we were allocated and could not complete the run.
+
+\section{Baseline -- COSMIC}
+\label{COSMIC_chapter}
+When trying to improve existing results in many machine learning fields, a baseline is used instead of starting from scratch. A baseline is an already functioning model that provides basic results to the problem at hand. This provides the opportunity to allocate resources on improving the model instead of building it from the ground up and allows the machine learning community to expand on and draw benefits from each other's work. 
+
+This project has been developed using the COSMIC model \citep{ghosal2020cosmic} as a baseline. COSMIC is a GRU-based model implemented with PyTorch that has achieved state-of-the-art results across four corpora commonly used in emotion recognition. The idea behind the model is that when classifying an utterance, the emotions of the utterances, both preceding and succeeding, are also taken into account. This way, the context of the conversation can be used to predict the emotions of individual utterances more accurately. 
+
+
+%COMSICs arkitektur bygger på att de skapar egna GRU-celler och GRU-lager som bygger på PyTorchs respektive. 
+%Filip
+
+
+Figure \ref{fig:COSMIC_arch} provides a simplified description of how COSMIC operates in a conversation between person A and person B. For each time step $t$, there is an utterance said by either A or B with the other person as a listener. At the next time-step $t+1$, the roles are altered depending on who utters the next utterance. For instance, if Person A were to speak multiple utterances in a row, they would remain the speaker until Person B spoke. In cases where there are more than two participants in the conversation, the same figure applies but with multiple listeners. For each time-step, there exists only one speaker while all other participants are listeners. For each utterance, multiple GRU-cells exist that predict both the speaker's intent and listener's response at that certain time-step. These cells are used to predict the emotion of the current utterance and the prediction of emotions in other utterances related to said utterance. 
+
+These GRU-cells correspond to five different states to determine what emotion to predict. These states are shown in the bottom right of Figure \ref{fig:COSMIC_arch} denoted by a color that shows where the state is used in the model.
+Crucial to these states and the contextual emotion recognition of COSMIC is also the Commonsense feature vector created by COMET \citep{Bosselut2019COMETCT}. This model is trained on multiple commonsense knowledge graphs in order to perform automatic knowledge base construction. The relevant features being used are \textit{Intent of speaker}, \textit{Effect of speaker}, \textit{Reaction of speaker}, \textit{Effect of listeners}, and \textit{Reaction of listeners}.
+Out of the five states mentioned earlier, four of them are heavily interconnected, taking each other as well as parts of the commonsense vector into account when being updated. For all states, the previous value of the state is also taken into account.
+\begin{itemize}
+    \item \textit{Context state} is a state shared between speaker and listener. It manages the current overall emotional state of the conversation and can be observed as the green cell in between the parties in the figure. The state takes input from the speaker at each time-step. This input is a vector based on the current utterance as well as the Internal and External state from the previous time-step.
+    
+    \item \textit{Internal state} tracks for each participant what emotions they are feeling internally. This could remain hidden, depending on whether or not a participant explicitly displays their emotions. For the speaker, the internal state is updated using an \textit{attention vector}, formed from the current utterance and previous context state, as well as \textit{effect on speaker} from the commonsense vector. For all other participants, \textit{effect on listener} is used instead of \textit{effect on speaker}. This state exists as a the blue cell for all participants.
+    
+    \item \textit{External state} portrays, for each participant, what emotions they are expressing to the other participants through both utterances and reactions. As this state can be observed and understood by other participants, this state can be reacted to, which is taken into account when updating its value. For the speaker, the attention vector and \textit{reaction of speaker} are used to update the value. For all listeners, \textit{reaction of speaker} is replaced with \textit{reaction of listener}. This state exists as the red cell for all participants
+    
+    \item \textit{Intent state} is a state only present for the current speaker. As the name suggests, it represents the speaker's objective is for the current utterance. For example, if paying the listener a compliment, the intent could be to make the listener happier. Its value is updated by using the current internal state of the same participant as well as \textit{intent of speaker}. This state exists as the orange cell only for the speaker.
+    
+\end{itemize}
+Internal state and External state are especially codependent as they combine into the sum of a participant's emotional state and are the only states updated for listeners. 
+
+\emph{Emotion-rep}, or \emph{Emotion state}, the final state, considers the current utterance, the summed emotional state through the Internal and External state, and the Intent state to predict the current utterance. The state exists as the purplee state only for the speaker. This calculation is repeated for every utterance in every conversation in the corpus.
+
+%Softmax, relu mm
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.3]{msccls/explanatory_images/COSMIC_arch.png}
+    \caption{COSMIC architecture. From \citet{ghosal2020cosmic}.}
+    \label{fig:COSMIC_arch}
+\end{figure}
+
+
+\section{CASTLE}
+Building on COSMIC, we designed CASTLE, COSMIC-based AnalySer Taking advantage of LSTM for Emotion recognition, to answer our research questions. We have made several improvements on the COSMIC baseline, one of the fundamental being replacing the internal GRU architecture with an LSTM-based architecture, as the name of the model indicates. This is greater change than it might seem at first glance. Both the GRU layer in COSMIC and the LSTM layer in CASTLE contain 768 of their corresponding cells. When comparing the LSTM cell to the GRU cell, as can be observed in \ref{LSTM} and \ref{GRU}, we notice that the LSTM cell has two more gates and one more computation than the GRU cell. As we have 768 cells, this is clearly a considerable adjustment. 
+%An LSTM architecture has, as mentioned in section \ref{GRU}, a higher number of parameters.
+
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.3]{msccls/explanatory_images/CASTLE_arch.png}
+    \caption{CASTLE architecture}
+    \label{fig:CASTLE_arch}
+\end{figure}
+
+Figure \ref{fig:CASTLE_arch} demonstrates the timeline of CASTLE, from an utterance to an emotion. Initially the data is extracted from the corpora and divided into the train, dev, and test sets. RoBERTa is then used together with this data in order to create a word embedding for the model. All of this is only pre-processing before any actual training is done. 
+CASTLE is also constructed with both \textit{batch normalization} layers \citep{ioffe2015batch} and \textit{layer normalization} layers \citep{Ba2016LayerN}. \citet{Ba2016LayerN} further states that the batch normalization layers use the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. On the other hand, the layer normalization layers are constructed by transposing the batch normalization layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. These two types of layers are used in order to speed up the training process. 
+Following the normalization, there is one LSTM layer with 768 LSTM cells as well as two layers with five LSTM-cells each. These five cells are corresponding to the five states explained in chapter \ref{COSMIC_chapter}. In conjunction with the LSTM layer there occurs a dropout that is set as a hyperparameter. The dropout, as mentioned previously, disregards a percentage of the information learnt in order to combat over-reliance on the training data. 
+CASTLE takes use of a \textit{linear} layer, also known as a fully connected network. A linear layer is a layer that is used to generalize input \citep{TensorflowDeep}, which means that the model does not need any special assumptions about the input, such as whether it consists of text or audio.
+Finally, a \textit{softmax} layer is used and is built upon the softmax function \citep{boltzmann1868studien}. The role of the softmax layer is to distribute the output of the network into k number of classes \citep{hess2020softmaxbased}, in the case of CASTLE, the different emotions that are represented in the corpora. 
+
+
+
+Even though CASTLE and COSMIC have the same amount of hyperparameters, they still differ in how much they affect the model. When using the same values for the hyperparameters in CASTLE that produced state-of-the-art results for COSMIC, CASTLE performed worse than post-optimization. 
+COSMIC is also implemented with a \textit{residual} connection \citep{he2015deep}, which allows the model to redefine the layers as learning residual functions referencing the layer inputs. This is supposed to facilitate the training of the model. While we originally wanted to implement this feature in CASTLE, there was simply no space to do it within the project's scope. 
+
+
+
+
+
+
+
+
+%We chose COSMIC as our baseline because SOTA, more experienced in PyTorch
+\section{Hyperparameter optimization}
+\label{sect:hyper_opt}
+
+
+%The ranges used was X-Y for all corpora
+%Learning rate var: XXX
+%Dropout var: XXX
+%Batch size var: XXX
+
+A large part of our work has been focused on optimizing hyperparameters for optimal results. As stated by \citet{KOHAVI1995304}, different hyperparameter configurations tend to work best for different corpora which changes with model. This means that not only do we have to optimize in order to find the combination of hyperparameters that produce the best results for CASTLE, this hyperparameter optimization must be done separately for each corpus.
+To optimize our hyperparameters, we implemented the \texttt{Tune} framework offered by \texttt{Ray} \citep{liaw2018tune}. This framework allowed us to experiment efficiently with many different configurations and provided a simple way to run trials concurrently. Most of our optimization was done with a combination of grid search and random search. Random search is a function with two parameters, \textit{start} and \textit{end}, and for each trial, it randomly selects a float from in between the two values to use for the given hyperparameter. Grid search instead takes in a list of floats as a parameter and runs a trial for each value in the list. Multiple grid searches can easily take a large amount of time to run as all possible combinations of values across all grid searches will be tested in separate trials. 
+
+Our approach was to start with random search on our chosen hyperparameters to get a sense of what range of values produce optimal results. \citet{bergstra2012random} shows that randomly chosen trials are more efficient than grid search at traversing the search space. Once we had established these initial values for what we wanted our hyperparameters to be, we tested out various combinations with grid search, keeping the ones that produced promising results and replacing the others by running new random searches.
+
+
+
+
+
+
+
+%Hur vi "räknade ut" våra resultat, 10 avg på best valid ->( test)
+%Epochs
+%Google Colab
+%Ray Tune för att studera hyperparametrar och automatisera
+%HAL - diskussion
+
+
+%How many sets of hyperparameters we evaluated? Vi hade i snitt 20:ish per dataset
+%4 dataset for the experiment
+%Reported 10 samples as one averge. 
+
+%Stycke där vi jömför med HAL
+
+
+
+
+
+
+
+
+
+%Lack of resources
+
+
+%Hyperparametrization with Tune
+%Learning rate
+%Dropout
+%Batch_size [RAM limitations]
+%Definitioner finns redan i terminologi
+
 
 %female 2ggr för olika känslor mitt i dialog
 
@@ -813,15 +944,14 @@ In this chapter, we start by analyzing the results that CASTLE achieved. Consequ
 
 \section{Performance}
 
-As stated in the \nameref{result_chapter} chapter, CASTLE accomplishes state-of-the-art results on two of the three corpora annotated for emotion recognition. This makes CASTLE an improvement over current models, namely COSMIC for MELD and DialogXL for IEMOCAP. EmoryNLP was the only corpus that we managed to run CASTLE on without achieving better results. 
+As stated in the \nameref{result_chapter} chapter, CASTLE accomplishes state-of-the-art results on two of the three corpora annotated for emotion recognition. This makes CASTLE an improvement over current models, namely COSMIC for MELD and DialogXL for IEMOCAP. EmoryNLP was the only corpus that we managed to run CASTLE on without achieving better results. There might be several reasons for this, but we believe that one of them is more likely than the others. As mentioned in \nameref{sect:hyper_opt}, each corpus needed its own hyperparameter optimization.
+As EmoryNLP was the last corpus that we optimized CASTLE for, there was not enough time to thoroughly tune the hyperparameters.
 
-There might be several reasons for this, but we believe that one of them is more likely than the others. As EmoryNLP was the last corpus that we optimized CASTLE for, there was not enough time to thoroughly tune the hyperparameters. The method we used for optimizing hyperparameters was to initially use random search to find relevant sets of parameters, where the leading values were then iterated through with the help of grid search. 
+%Working in this way is somewhat of a scattershot approach, where we depend unpleasantly much on the results of random searches. While the random searches clearly produced competitive results, there is nothing to indicate whether an optimal set of values was overlooked. Since CASTLE produces results within 99$\%$ of the current state of the art, we believe that CASTLE could produce state-of-the-art results for EmoryNLP with additional time and resources. 
 
-Working in this way is somewhat of a scattershot approach, where we depend unpleasantly much on the results of random searches. While the random searches clearly produced competitive results, there is nothing to indicate whether an optimal set of values was overlooked. Since CASTLE produces results within 99$\%$ of the current state of the art, we believe that CASTLE could produce state-of-the-art results for EmoryNLP with additional time and resources. 
+The evidence demonstrates that CASTLE exceeded the best F1-scores on the MELD and IEMOCAP corpora while remaining competitive on EmoryNLP and with non-existent results for DailyDialog. This fulfills our thesis' primary aim that we defined in section \ref{research_questions} and makes CASTLE one of the most viable systems to adopt for practical emotion recognition applications.
 
-The evidence demonstrates that CASTLE exceeded the best F1-scores on the MELD and IEMOCAP corpora while remaining competitive on EmoryNLP and with inconclusive results for DailyDialog. This fulfills our thesis' primary aim that we defined in section \ref{research_questions} and makes CASTLE one of the most viable systems to adapt for practical emotion recognition applications.
-
-The primary improvement we implemented was replacing an existing GRU layer with a more complex LSTM one. As mentioned earlier, the empirical observations show that LSTM layers are likely to outperform GRU layers when there is enough data at the expense of computation power. Since LSTM is a more complex structure with an additional gate and having the concept of utilizing memory in a cell state, it is no surprise that it can outperform GRU layers. When debating if to use CASTLE or some other model, it would boil down to whether an increase in certainty is worth the computational power cost. 
+The primary improvement we implemented was replacing an existing GRU layer with a more complex LSTM one. As mentioned earlier, the empirical observations show that LSTM layers are likely to outperform GRU layers when there is enough data at the expense of computation power. Since LSTM is a more complex structure with an additional gate and having the concept of utilizing memory in a cell state, it is no surprise that it can outperform GRU layers. It is common for results in machine learning to incrementally become better by building on top of each other. Similarly our results, albeit just slightly better than the previous state of the art, is the next in a long line of continuous improvements that slowly but surely improve results.
 
 
 
@@ -846,7 +976,7 @@ At the start of this project, the scope was much larger than the one explored du
 
 When deciding the scope, we also underestimated just how time-consuming this project was going to be. The initial thought of both emotion recognition and keyword extraction, even with a specialized corpus available from the start, would be a difficult challenge to complete in the time frame. As we feel that more time could have been spent on optimization with potentially better results for EmoryNLP, adding a wholly new task in keyword extraction would most likely have produced lacking results for both tasks.
 
-As the laptops we were using did not contain a GPU, running our code locally was not possible, and the rules of Google Colab instead bound us. One of these rules is that no notebook can run for more than 24 hours straight. Hyperparameter optimization is a time-consuming task that is solved by trial and error, and this restriction meant that we could not run as many trials at a time as we wanted, which in turn led to less optimization as there was not enough time.
+As the laptops we were using did not contain a GPU, running our code locally was not possible, and the rules of Google Colab instead bound us. One of these rules is that no notebook can run for more than 24 hours straight. Hyperparameter optimization is a time-consuming task that is solved by trial and error, and this time restriction meant that we could not run as many trials at a time as we wanted, which in turn led to less optimization as we did not have as high an uptime as we potentially could.
 
 
 %Tid på Colab max 24h
@@ -859,7 +989,7 @@ As the laptops we were using did not contain a GPU, running our code locally was
 %No resources available to run this with LSTM 
 Originally we intended to have CASTLE run on the same corpora that COSMIC produced results for. However, due to the previously discussed hardware limitations, we did not have enough memory to run CASTLE on DailyDialog. Despite continuous attempts at optimization, we could not complete a finished run with the corpus and instead repeatedly ran out of memory. 
 
-The reason for this is twofold. Firstly, DailyDialog is close to a magnitude larger than the other corpora used in this experiment. Secondly, LSTM is a complex architecture with more gates and calculations, which leads to higher demand in hardware. As Google Colab has a limited amount of memory for us to utilize, we did not have to option to run the corpus on the service. On the other hand, with access to more memory, there is a great possibility that we would produce close to, if not, state-of-the-art results for DailyDialog as well. 
+The reason for this is twofold. Firstly, DailyDialog is close to a magnitude larger than the other corpora used in this experiment. Secondly, LSTM is a complex architecture with more gates and calculations, which leads to higher demand in hardware. As Google Colab has a limited amount of memory for us to utilize, we did not have to option to run the corpus on the service. On the other hand, with access to more memory, there is a great possibility that we would produce close to, if not, state-of-the-art results for DailyDialog as well.
 
 \section{Future Work}
 
